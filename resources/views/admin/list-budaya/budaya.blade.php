@@ -36,7 +36,7 @@
                             </td>
                             <td style="white-space: normal;"><h6 class="mb-0 text-sm">{{ $b->kontak }}</h6></td>
                             <td style="white-space: normal;"><h6 class="mb-0 text-sm">{{ $b->deskripsi }}</h6></td>
-                            <td class="align-middle"><a href="#" class="text-secondary font-weight-bold text-xs" data-bs-target="#modalEdit" data-bs-toggle="modal">Edit</a></td>
+                            <td class="align-middle"><a href="#" class="text-secondary font-weight-bold text-xs btn-edit" data-bs-target="#modalEdit" data-bs-toggle="modal" data-budaya-id="{{ $b->id_budaya }}">Edit</a></td>
                         </tr>
                         @endforeach
                   </tbody>
@@ -128,45 +128,105 @@
     <!-- End isi modal -->
 
     <!-- Isi modal edit -->
-        <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambahkan Kebudayaan</h1>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="/add-budaya/store" enctype="multipart/form-data">
-                    {{ csrf_field() }}
-                    <div class="mb-3">
-                        <label for="mitra" class="form-label">Nama 2Kebudayaan</label>
-                        <input type="text" class="form-control" id="namaBudaya" name="budaya">
+      <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="editModalLabel">Edit Budaya</h1>
                     </div>
-                    <div class="mb-3">
-                        <label for="alamat" class="form-label">Kontak Narahubung</label>
-                        <input type="text" class="form-control" id="kontakBudaya" name="kontak">
-                    </div>
-                    <div class="mb-3">
-                        <label for="notelepon" class="form-label">Deskripsi</label>
-                        <textarea type="text" class="form-control" id="deskripsiBudaya" name="deskripsi"></textarea>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="d-grid gap-2 col-6 mx-auto">
-                            <div class="row">
-                                <div class="col-6">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                                </div>
-                                <div class="col-6">
-                                    <button type="submit" class="btn btn-primary" type="button">Simpan</button>
+                    <div class="modal-body">
+                      <form method="POST" action="/edit-budaya/update/{{ request()->route('id') }}" id="editForm" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        {{ method_field('POST') }}
+                        <input type="text" name="id_budaya" id="id_budaya">
+                        <div class="mb-3">
+                            <label for="namaBudaya" class="form-label">Nama Budaya</label>
+                            <input type="text" class="form-control" id="budaya" name="budaya">
+                        </div>
+                        <div class="mb-3">
+                              <label for="kontak" class="form-label">Kontak Narahubung</label>
+                              <input type="text" class="form-control" id="kontak" name="kontak">
+                          </div>
+                          <div class="mb-3">
+                              <label for="deskripsi" class="form-label">Deskripsi</label>
+                              <textarea type="text" class="form-control" id="deskripsi" name="deskripsi"></textarea>
+                          </div>
+                        <div class="modal-footer">
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button type="submit" class="btn btn-primary" type="button">Simpan</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                      </form>
                     </div>
-                    </form>
-                </div>
-                </div>
-            </div>
-        </div>
+                  </div>
+              </div>
+          </div>
     <!-- End isi modal -->
+
+</main>
+
+<script>
+    $(document).ready(function () {
+    // Tangani klik tombol "Edit"
+    $('.btn-edit').click(function () {
+        var budayaId = $(this).data('budaya-id');
+
+        // Menggunakan AJAX untuk mengambil data budaya dengan ID yang sesuai
+        $.ajax({
+            url: '/budaya/' + budayaId + '/modal', // Ganti dengan URL yang sesuai
+            type: 'GET',
+            success: function (response) {
+                // Isi formulir modal dengan data yang diterima
+                $('#id_budaya').val(budayaId);
+                $('#budaya').val(response.budaya);
+                $('#kontak').val(response.kontak);
+                $('#deskripsi').val(response.deskripsi);
+            }
+        });
+    });
+
+    // Tangani klik tombol "Simpan" pada modal update
+    $('#editForm').submit(function (event) {
+        event.preventDefault(); // Mencegah pengiriman form biasa
+        var formData = $(this).serialize();
+
+        $.ajax({
+            url: '/edit-budaya/update/{id}', // Ganti dengan URL yang sesuai
+            type: 'POST',
+            data: formData,
+            success: function (response) {
+                // Tambahkan logika atau respons sesuai kebutuhan
+                if (response.success) {
+                      Swal.fire({
+                      title: 'Pemberitahuan!',
+                      text: response.message,
+                      icon: 'success',
+                      showConfirmButton: false,
+                      timer: 1500 // Waktu tampilan pesan (opsional)
+                  }).then(() => {
+                      // Tutup modal
+                      $('#modalEdit').modal('hide');
+
+                      // Reload halaman
+                      location.reload();
+                  });
+                } else {
+                    // Jika pembaruan gagal, tampilkan pesan kesalahan
+                    console.error(response.message);
+                }
+            },
+        });
+    });
+});
+
+</script>
 
 </main>
 @endsection

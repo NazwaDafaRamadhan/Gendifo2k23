@@ -135,7 +135,7 @@
                       <h1 class="modal-title fs-5" id="editModalLabel">Edit Produk</h1>
                   </div>
                   <div class="modal-body">
-                    <form method="POST" action="/produk/update" id="editForm" enctype="multipart/form-data">
+                    <form method="POST" action="/edit-produk/update/{{ request()->route('id') }}" id="editForm" enctype="multipart/form-data">
                       {{ csrf_field() }}
                       {{ method_field('POST') }}
                       <input type="hidden" name="id_produk" id="id_produk">
@@ -144,7 +144,7 @@
                           <input type="text" class="form-control" id="produk" name="produk">
                       </div>
                       <div class="mb-3">
-                            <label for="alamat" class="form-label">Kontak Narahubung</label>
+                            <label for="kontak" class="form-label">Kontak Narahubung</label>
                             <input type="text" class="form-control" id="kontak" name="kontak">
                         </div>
                         <div class="mb-3">
@@ -174,27 +174,23 @@
 
 <script>
     $(document).ready(function () {
-        // Tangani klik tombol "Edit"
-        $('.btn-edit').click(function () {
-            var produkId = $(this).data('produk-id');
+    // Tangani klik tombol "Edit"
+    $('.btn-edit').click(function () {
+        var produkId = $(this).data('produk-id');
 
-            // Menggunakan AJAX untuk mengambil data produk dengan ID yang sesuai
-            $.ajax({
-                url: '/produk/' + produkId + '/modal', // Ganti dengan URL yang sesuai
-                type: 'GET',
-                success: function (response) {
-                    // Isi formulir modal dengan data yang diterima
-                    $('#id_produk').val(produkId);
-                    $('#produk').val(response.produk);
-                    $('#kontak').val(response.kontak);
-                    $('#deskripsi').val(response.deskripsi);
-                }
-            });
+        // Menggunakan AJAX untuk mengambil data produk dengan ID yang sesuai
+        $.ajax({
+            url: '/produk/' + produkId + '/modal', // Ganti dengan URL yang sesuai
+            type: 'GET',
+            success: function (response) {
+                // Isi formulir modal dengan data yang diterima
+                $('#id_produk').val(produkId);
+                $('#produk').val(response.produk);
+                $('#kontak').val(response.kontak);
+                $('#deskripsi').val(response.deskripsi);
+            }
         });
     });
-
-    $(document).ready(function () {
-    // ...
 
     // Tangani klik tombol "Simpan" pada modal update
     $('#editForm').submit(function (event) {
@@ -202,31 +198,30 @@
         var formData = $(this).serialize();
 
         $.ajax({
-            url: '/produk/update', // Ganti dengan URL yang sesuai
+            url: '/edit-produk/update/{id}', // Ganti dengan URL yang sesuai
             type: 'POST',
             data: formData,
             success: function (response) {
                 // Tambahkan logika atau respons sesuai kebutuhan
                 if (response.success) {
-                    // Jika pembaruan berhasil, tampilkan pesan sukses
-                    console.log(response.message);
-                    // Tutup modal
-                    $('#modalEdit').modal('hide');
-                    // Reload atau perbarui data tampilan sesuai kebutuhan
-                    location.reload(); // Contoh: Perbarui halaman setelah berhasil
+                      Swal.fire({
+                      title: 'Pemberitahuan!',
+                      text: response.message,
+                      icon: 'success',
+                      showConfirmButton: false,
+                      timer: 1500 // Waktu tampilan pesan (opsional)
+                  }).then(() => {
+                      // Tutup modal
+                      $('#modalEdit').modal('hide');
+
+                      // Reload halaman
+                      location.reload();
+                  });
                 } else {
                     // Jika pembaruan gagal, tampilkan pesan kesalahan
                     console.error(response.message);
-                    // Tampilkan pesan kesalahan ke pengguna sesuai kebutuhan
-                    // Misalnya, tampilkan pesan kesalahan di dalam modal atau tampilan
                 }
             },
-            error: function (xhr, status, error) {
-                // Tangani kesalahan AJAX jika diperlukan
-                console.error(error);
-                // Tampilkan pesan kesalahan ke pengguna sesuai kebutuhan
-                // Misalnya, tampilkan pesan kesalahan di dalam modal atau tampilan
-            }
         });
     });
 });

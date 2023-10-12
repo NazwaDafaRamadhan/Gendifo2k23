@@ -33,14 +33,13 @@ class ProdukController extends Controller
     public function update(Request $request) {
         
         // Ambil data dari form
-        $produkId = $request->input('produk_id');
         $namaProduk = $request->input('produk');
         $kontakProduk = $request->input('kontak');
         $deskripsiProduk = $request->input('deskripsi');
     
         // Update data produk dalam database
         DB::table('produk')
-            ->where('id_produk', $produkId)
+            ->where('id_produk', $request->input('id_produk'))
             ->update([
                 'produk' => $namaProduk,
                 'kontak' => $kontakProduk,
@@ -48,6 +47,6 @@ class ProdukController extends Controller
             ]);
     
         // Redirect atau kirim respons sesuai kebutuhan Anda
-        return redirect('/produk')->with('success', 'Berhasil memperbaharui data produk.');
+        return response()->json(['url' => '/produk', 'message' => 'Berhasil mengubah data', 'success' => true]);    
     }
 }    

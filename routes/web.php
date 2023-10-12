@@ -58,9 +58,11 @@ Route::get('/wisata', [WisataController::class, 'index']);
 // Route untuk data budaya
 Route::get('/budaya', [BudayaController::class, 'index']);
 Route::post('/add-budaya/store', [BudayaController::class, 'input']);
+Route::get('/budaya/{id}/modal', [BudayaController::class, 'showForModal']);
+Route::post('/edit-budaya/update/{id}', [BudayaController::class, 'update']);
 
 // Route untuk data produk
 Route::get('/produk', [ProdukController::class, 'index']);
 Route::post('/add-produk/store', [ProdukController::class, 'input']);
 Route::get('/produk/{id}/modal', [ProdukController::class, 'showForModal']);
-Route::post('/produk/update', [ProdukController::class, 'update']);
+Route::post('/edit-produk/update/{id}', [ProdukController::class, 'update']);

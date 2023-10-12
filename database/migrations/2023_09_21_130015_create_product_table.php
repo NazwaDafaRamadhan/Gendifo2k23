@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id_produk');
             $table->string('produk')->nullable();
             $table->string('kontak')->nullable();
-            $table->text('deksripsi')->nullable();
+            $table->text('deskripsi')->nullable();
         });
     }
 
