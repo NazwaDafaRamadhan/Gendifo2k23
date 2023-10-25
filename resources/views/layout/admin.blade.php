@@ -7,14 +7,16 @@
 
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <link href="../img/logo-gendifo-besar.png" rel="icon">
   
   <!-- Nucleo Icons -->
-  <link href="css/nucleo-icons.css" rel="stylesheet" />
-  <link href="css/nucleo-svg.css" rel="stylesheet" />
+  <!-- <link href="css/nucleo-icons.css" rel="stylesheet" />
+  <link href="css/nucleo-svg.css" rel="stylesheet" /> -->
   
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <link href="css/nucleo-svg.css" rel="stylesheet" />
+  <link href="css/nucleo-icons.css" rel="stylesheet" />
   
   <!-- CSS Files -->
   <link type="text/css" href="css/style-admin.css" rel="stylesheet" />
@@ -27,10 +29,27 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Trix-Editor -->
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
+  <script src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
+
   
   <style>
     .bg-layout-atas{
-      background-color: #2F80ED !important;
+      width: 100%;
+      background: url("../img/latar_desa.jpg");
+      background-size: cover;
+      position: relative;
+    }
+
+    .bg-layout-atas::before {
+    content: "";
+    background: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
     }
 
     ::-webkit-scrollbar {
@@ -99,6 +118,6 @@
     <script src="js/plugins/chartjs.min.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="js/admin.js"></script>
-
+    
 </body>
 </html>

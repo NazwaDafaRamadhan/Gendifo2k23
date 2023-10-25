@@ -2,6 +2,7 @@
 @section ('title','Master Budaya')
 
 @section('content')
+
 <div class="container-fluid py-4">
       <div class="row">
         <div class="col-12">
@@ -16,8 +17,8 @@
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Kebudayaan</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Narahubung</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Deskripsi Budaya</th>
-                      <th class="text-secondary opacity-7"></th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal Dibuat</th>
+                      <th class="text-secondary text-uppercase text-xxs font-weight-bolder opacity-7 ps-2">Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -26,7 +27,7 @@
                             <td>
                                 <div class="d-flex px-2 py-1">
                                     <div>
-                                        <img src="" class="avatar avatar-sm me-3" alt="">
+                                        <img src="{{ 'storage/'. $b->gambar }}" class="avatar avatar-sm me-3" alt="">
                                     </div>
                                     <div class="d-flex flex-column justify-content-center">
                                         <h6 style="white-space: normal;" class="mb-0 text-sm">{{ $b->budaya }}</h6>
@@ -35,8 +36,12 @@
                                 </div>
                             </td>
                             <td style="white-space: normal;"><h6 class="mb-0 text-sm">{{ $b->kontak }}</h6></td>
-                            <td style="white-space: normal;"><h6 class="mb-0 text-sm">{{ $b->deskripsi }}</h6></td>
-                            <td class="align-middle"><a href="#" class="text-secondary font-weight-bold text-xs btn-edit" data-bs-target="#modalEdit" data-bs-toggle="modal" data-budaya-id="{{ $b->id_budaya }}">Edit</a></td>
+                            <td style="white-space: normal;"><h6 class="mb-0 text-sm text-center">{{ $b->created_at }}</h6></td>
+                            <td class="align-middle">
+                              <a href="#" class="text-secondary font-weight-bold text-xs btn-edit" data-bs-target="#modalEdit" data-bs-toggle="modal" data-budaya-id="{{ $b->id_budaya }}">Edit</a> ||
+                              <a href="#" class="text-secondary font-weight-bold text-xs btn-delete"
+                              onclick="return confirmDelete('{{ $b->id_budaya }}')">Hapus</a>
+                            </td>
                         </tr>
                         @endforeach
                   </tbody>
@@ -97,16 +102,27 @@
                     <form method="POST" action="/add-budaya/store" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="mb-3">
-                        <label for="mitra" class="form-label">Nama Kebudayaan</label>
-                        <input type="text" class="form-control" id="namaBudaya" name="budaya">
+                        <label for="budaya" class="form-label">Nama Kebudayaan</label>
+                        <input type="text" class="form-control" id="budaya" name="budaya">
                     </div>
                     <div class="mb-3">
                         <label for="alamat" class="form-label">Kontak Narahubung</label>
                         <input type="text" class="form-control" id="kontakBudaya" name="kontak">
                     </div>
                     <div class="mb-3">
-                        <label for="notelepon" class="form-label">Deskripsi</label>
-                        <textarea type="text" class="form-control" id="deskripsiBudaya" name="deskripsi"></textarea>
+                        <label for="notelp" class="form-label">No Telepon</label>
+                        <input type="text" class="form-control" id="notelpBudaya" name="notelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="deskripsi" class="form-label">Deskripsi</label>
+                        <input id="deskripsi" type="hidden" name="deskripsi">
+                        <trix-editor input="deskripsi"></trix-editor>
+                        <!-- <textarea type="text" class="form-control" id="deskripsiProduk" name="deskripsi" style="width: 100%; height: 200px; font-size: 14px;"></textarea> -->
+                    </div>
+                    <div class="mb-3">
+                        <label for="gambar" class="form-label">Gambar Budaya</label>
+                        <img class="img-preview img-fluid"></img>
+                        <input type="file" class="form-control" id="gambar" name="gambar" onchange="previewImage()">
                     </div>
                     <div class="modal-footer">
                         <div class="d-grid gap-2 col-6 mx-auto">
@@ -135,21 +151,38 @@
                         <h1 class="modal-title fs-5" id="editModalLabel">Edit Budaya</h1>
                     </div>
                     <div class="modal-body">
-                      <form method="POST" action="/edit-budaya/update/{{ request()->route('id') }}" id="editForm" enctype="multipart/form-data">
+                    @foreach ($budaya as $b)
+                      <form method="POST" action="/edit-budaya/update/{{ $b->id_budaya }}" id="editForm" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         {{ method_field('POST') }}
-                        <input type="text" name="id_budaya" id="id_budaya">
+                        <input type="hidden" name="id_budaya" id="id_budaya" value="{{  $b->id_budaya }}">
                         <div class="mb-3">
-                            <label for="namaBudaya" class="form-label">Nama Budaya</label>
-                            <input type="text" class="form-control" id="budaya" name="budaya">
+                            <label for="budaya" class="form-label">Nama Budaya</label>
+                            <input type="text" class="form-control" id="budaya" name="budaya" value="{{ $b->budaya }}">
                         </div>
                         <div class="mb-3">
                               <label for="kontak" class="form-label">Kontak Narahubung</label>
-                              <input type="text" class="form-control" id="kontak" name="kontak">
+                              <input type="text" class="form-control" id="kontak" name="kontak" value="{{ $b->kontak }}">
+                          </div>
+                          <div class="mb-3">
+                              <label for="notelp" class="form-label">No Telepon</label>
+                              <input type="text" class="form-control" id="notelp" name="notelp" value="{{ $b->notelp }}">
                           </div>
                           <div class="mb-3">
                               <label for="deskripsi" class="form-label">Deskripsi</label>
-                              <textarea type="text" class="form-control" id="deskripsi" name="deskripsi"></textarea>
+                              <input id="deskripsi" value="{{ $b->deskripsi }}" type="hidden" name="deskripsi">
+                              <trix-editor input="deskripsi" id="deskripsi"></trix-editor>
+                              <!-- <textarea type="text" class="form-control" id="deskripsi" name="deskripsi" style="width: 100%; height: 200px; font-size: 14px;"></textarea> -->
+                          </div>
+                          <div class="mb-3">
+                              <label for="gambarEdit" class="form-label">Gambar Budaya</label>
+                              <input type="hidden" name="gambarLama" value="{{ $b->gambar }}">
+                              @if ($b->gambar)
+                              <img class="img-preview img-fluid d-block" id="img-preview" src="{{ asset('storage/'. $b->gambar) }}"></img></br>
+                              @else
+                              <img class="img-preview img-fluid d-none" id="img-preview" src=""></img></br>
+                              @endif
+                              <input type="file" class="form-control" id="gambarEdit" name="gambar" onchange="editImage()">
                           </div>
                         <div class="modal-footer">
                             <div class="d-grid gap-2 col-6 mx-auto">
@@ -158,12 +191,13 @@
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                                     </div>
                                     <div class="col-6">
-                                        <button type="submit" class="btn btn-primary" type="button">Simpan</button>
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                       </form>
+                      @endforeach
                     </div>
                   </div>
               </div>
@@ -173,58 +207,125 @@
 </main>
 
 <script>
-    $(document).ready(function () {
-    // Tangani klik tombol "Edit"
-    $('.btn-edit').click(function () {
+    $(document).ready(function() {
+        $('#modalTambah form').submit(function(event) {
+            event.preventDefault(); // Mencegah pengiriman formulir secara otomatis
+
+            var budaya = $('#budaya').val();
+            var deskripsi = $('#deskripsi').val(); 
+            var kontak = $('#kontakBudaya').val();
+            var notelp = $('#notelpBudaya').val();
+            var gambarInput = $('#gambar');
+
+            // Validasi gambar
+            var gambarValid = true;
+            if (gambarInput[0].files.length === 0) {
+                gambarValid = false;
+                alert('Pilih gambar budaya terlebih dahulu.');
+            } else {
+                var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+                if (!allowedExtensions.exec(gambarInput.val())) {
+                    gambarValid = false;
+                    alert('File gambar harus dalam format JPG, JPEG, PNG, atau GIF.');
+                }
+            }
+
+            if (!budaya || !deskripsi || !kontak || !notelp || !gambarValid) {
+                // Tampilkan pesan kesalahan jika ada
+                alert('Harap perhatikan untuk mengisi semua data.');
+            } else {
+                // Formulir valid, kirimkan formulir secara manual
+                $(this).unbind('submit').submit();
+            }
+        });
+        
+        // Tangani klik tombol "Edit"
+        $('.btn-edit').click(function () {
         var budayaId = $(this).data('budaya-id');
 
         // Menggunakan AJAX untuk mengambil data budaya dengan ID yang sesuai
         $.ajax({
-            url: '/budaya/' + budayaId + '/modal', // Ganti dengan URL yang sesuai
+            url: '/budaya-admin/' + budayaId + '/modal', // Ganti dengan URL yang sesuai
             type: 'GET',
             success: function (response) {
-                // Isi formulir modal dengan data yang diterima
-                $('#id_budaya').val(budayaId);
-                $('#budaya').val(response.budaya);
-                $('#kontak').val(response.kontak);
-                $('#deskripsi').val(response.deskripsi);
+                var deskripsiEditor = document.querySelector("trix-editor#deskripsi").editor;
+                deskripsiEditor.loadHTML(response.deskripsi);
             }
         });
     });
+  });
+        
+    
 
-    // Tangani klik tombol "Simpan" pada modal update
-    $('#editForm').submit(function (event) {
-        event.preventDefault(); // Mencegah pengiriman form biasa
-        var formData = $(this).serialize();
 
-        $.ajax({
-            url: '/edit-budaya/update/{id}', // Ganti dengan URL yang sesuai
-            type: 'POST',
-            data: formData,
-            success: function (response) {
-                // Tambahkan logika atau respons sesuai kebutuhan
-                if (response.success) {
-                      Swal.fire({
-                      title: 'Pemberitahuan!',
-                      text: response.message,
-                      icon: 'success',
-                      showConfirmButton: false,
-                      timer: 1500 // Waktu tampilan pesan (opsional)
-                  }).then(() => {
-                      // Tutup modal
-                      $('#modalEdit').modal('hide');
 
-                      // Reload halaman
-                      location.reload();
-                  });
-                } else {
-                    // Jika pembaruan gagal, tampilkan pesan kesalahan
-                    console.error(response.message);
-                }
-            },
+function confirmDelete(budayaId) {
+        Swal.fire({
+            title: 'Konfirmasi',
+            text: 'Anda yakin ingin menghapus data ini?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, Hapus',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Jika pengguna mengonfirmasi, jalankan aksi penghapusan
+                window.location = '/budaya-admin/delete/' + budayaId;
+            }
         });
+        return false; // Mencegah tautan mengarahkan langsung ke URL
+    }
+
+  function previewImage() {
+  const image = document.querySelector('#gambar');
+  const imgPreview = document.querySelector('.img-preview');
+
+  if (image.files && image.files[0]) {
+    imgPreview.style.display = 'block';
+
+    const fileGambar = new FileReader();
+
+    fileGambar.onload = function (gambarEvent) {
+      imgPreview.src = gambarEvent.target.result;
+    };
+
+    fileGambar.readAsDataURL(image.files[0]);
+  } else {
+    // Menampilkan pesan kesalahan dengan SweetAlert
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Tidak ada file yang dipilih',
     });
-});
+  }
+}
+
+function editImage() {
+  const image = document.querySelector('#gambarEdit');
+  const imgPreview = document.querySelector('#img-preview');
+
+  if (image.files && image.files[0]) {
+    const fileGambar = new FileReader();
+
+    fileGambar.onload = function (gambarEvent) {
+      imgPreview.src = gambarEvent.target.result;
+      imgPreview.classList.remove('d-none'); // Menampilkan gambar pratinjau
+    };
+
+    fileGambar.readAsDataURL(image.files[0]);
+  } else {
+    // Menampilkan pesan kesalahan dengan SweetAlert
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Tidak ada file yang dipilih',
+    });
+
+    // Menghilangkan gambar pratinjau
+    imgPreview.src = '';
+    imgPreview.classList.add('d-none');
+  }
+}
 
 </script>
 

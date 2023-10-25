@@ -16,6 +16,10 @@ return new class extends Migration
             $table->string('budaya')->nullable();
             $table->string('kontak')->nullable();
             $table->text('deskripsi')->nullable();
+            $table->text('singkat')->nullable();
+            $table->string('notelp')->nullable();
+            $table->string('gambar')->nullable();
+            $table->timestamps();
         });
     }
 

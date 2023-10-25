@@ -12,8 +12,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="img/favicon.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="../img/logo-gendifo-besar.png" rel="icon">
+  <link href="../img/logo-gendifo-besar.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -39,7 +39,8 @@
 
       <div class="row justify-content-center">
         <div class="col-xl-9 d-flex align-items-center justify-content-lg-between">
-          <h1 class="logo me-auto me-lg-0"><a href="{{ url('home') }}">Gendifo</a></h1>
+          <a href="{{ url('home') }}" class="logo me-auto me-lg-0"><img alt="logo-putih" src="../img/logo-putih.png"></img></a>
+          <!-- <h1 class="logo me-auto me-lg-0"><a href="{{ url('home') }}">Gendifo</a></h1> -->
           <!-- Uncomment below if you prefer to use an image logo -->
           <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -47,9 +48,10 @@
             <ul>
               <li><a class="nav-link active" href="{{ url('home') }}">Beranda</a></li>
               <li><a class="nav-link" href="{{ url('about') }}">Tentang Desa</a></li>
-              <li><a class="nav-link" href="{{ url('wisata') }}">Destinasi Pariwisata</a></li>
-              <li><a class="nav-link " href="{{ url('galeri') }}">Galeri Kebudayaan</a></li>
-              <li class="dropdown"><a href="{{ url('produk') }}"><span>Produk Lokal</span> <i class="bi bi-chevron-down"></i></a>
+              <li><a class="nav-link" href="{{ url('wisata') }}">Destinasi Wisata</a></li>
+              <li><a class="nav-link " href="{{ url('budaya') }}">Galeri Kebudayaan</a></li>
+              <li><a class="nav-link " href="{{ url('produk') }}">Produk Lokal</a></li>
+              <!-- <li class="dropdown"><a href="{{ url('produk') }}"><span>Produk Lokal</span> <i class="bi bi-chevron-down"></i></a>
                 <ul>
                   <li><a href="#">Bunga Krisan</a></li>
                   <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
@@ -65,7 +67,7 @@
                   <li><a href="#">Drop Down 3</a></li>
                   <li><a href="#">Drop Down 4</a></li>
                 </ul>
-              </li>
+              </li> -->
               <!-- <li><a class="nav-link scrollto" href="#contact">Contact Us</a></li> -->
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
@@ -84,7 +86,7 @@
         <div class="col-xl-8">
           <h1>SELAMAT DATANG DI DESA GENDRO</h1>
           <h2>Gendifo : Gendro Digital Platform</h2>
-          <a href="" class="glightbox play-btn mb-4"></a>
+          <a href="../video/profil-gendifo.mp4" class="glightbox play-btn mb-4"></a>
         </div>
       </div>
     </div>
@@ -99,117 +101,87 @@
 
           <div class="section-title">
             <h2>Tentang Desa</h2>
-            <p>Desa Gendro, Kecamatan Tutur, Kabupaten Pasuruan merupakan sebuah desa asri yang dikelilingi pegunungan indah yang dapat memanjakan masyarakat yang berkunjung kesana dengan sajian panorama yang indah. Sajian panorama tersebut juga terbalut dengan suasana desa yang cukup asri khas daerah perdesaan serta keramahan warga desa dapat membuat siapapun yang berkunjung akan nyaman untuk menghabiskan waktu menikmati desa ini.</p></br>
-            <p>Desa Gendro juga menyajikan kebudayaan-kebudayaan lokal yang masih terus dilestarikan sebagai sebuah warisan dari nenek moyang, kebudayaan - kebudayaan tersebut masih mengandung nilai filosofis yang dalam serta bermakna untuk warga desa, kebudayaan tersebut berfungsi sebagai sebuah nilai identitas bagi desa ini.</p>
+            <p>Desa Gendro, sebuah desa di Kecamatan Tutur, Pasuruan, Jawa Timur, memikat dengan lima dusun uniknya dan beragam mata pencaharian, termasuk pertanian buah dan sayur, peternakan sapi perah, serta budidaya bunga krisan yang menawan. Disamping pesona alamnya, desa ini juga menjaga warisan budaya dan tradisinya. Dengan kedamaian pedesaan dan keramahan penduduknya, Gendro adalah tempat yang sempurna untuk melarikan diri dari kehidupan perkotaan dan mengeksplorasi keindahan alam serta budaya lokal. Selamat datang di Desa Gendro, tempat Anda akan menemukan pengalaman tak terlupakan di Jawa Timur, Indonesia.</p>
           </div>
 
           <div class="row content">
             <div class="col-lg-6">
               <p>
-                Desa ini memiliki 5 dusun yang masing-masing nya dipimpin oleh setiap kepala dusun, nama dusun-dusun tersebut adalah sebagai berikut:
+                Di tengah hutan pinus yang memikat, Desa Gendro menyuguhkan:
               </p>
               <ul>
-                <li><i class="ri-check-double-line"></i> Dusun Bangking</li>
-                <li><i class="ri-check-double-line"></i> Dusun Dukutan</li>
-                <li><i class="ri-check-double-line"></i> Dusun Gerdu</li>
-                <li><i class="ri-check-double-line"></i> Dusun Krajan</li>
-                <li><i class="ri-check-double-line"></i> Dusun Tuban</li>
+                <li><i class="ri-check-double-line"></i> Wisata Pinus yang sejuk dan menenangkan.</li>
+                <li><i class="ri-check-double-line"></i> Kearifan lokal dan budaya desa yang mempesona.</li>
+                <li><i class="ri-check-double-line"></i> Produk khas masyarakat desa yang unik dan menggoda selera.
+                </li>
               </ul>
             </div>
-            <!-- <div class="col-lg-6 pt-4 pt-lg-0">
+            <div class="col-lg-6 pt-4 pt-lg-0">
               <p>
-                Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                culpa qui officia deserunt mollit anim id est laborum.
+                Temukan pesona alam dan kekayaan tradisi lokal yang menantang Anda untuk menjelajah lebih dalam, mengungkap rahasia dan kenikmatan yang tersembunyi di sini.
               </p>
-              <a href="#" class="btn-learn-more">Learn More</a>
-            </div> -->
+              <a href="#" class="btn-learn-more">Lihat Selengkapnya</a>
+            </div>
           </div>
+
 
         </div>
       </section>
     <!-- End About Us Section -->
 
     <!-- ======= Services Section ======= -->
-      <!-- <section id="services" class="services">
-        <div class="container">
+    <section id="services" class="services">
+  <div class="container">
+    <div class="section-title">
+      <h2>Potensi Desa</h2>
+      <p>Desa Gendro adalah harta berpotensi tanpa batas. Budaya kaya, warisan memukau, produk khas menggoda - semuanya menunggu untuk dijelajahi. Tarian lokal memikat, kerajinan tangan eksotis dan bunga krisan menawan, sementara hutan pinus menawarkan ketenangan dan keindahan alam. Selamat datang untuk menjelajahi potensi luar biasa di Desa Gendro.</p>
+    </div>
 
-          <div class="section-title">
-            <h2>Services</h2>
-            <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-          </div>
-
-          <div class="row">
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-              <div class="icon-box">
-                <div class="icon"><i class="bx bxl-dribbble"></i></div>
-                <h4><a href="">Lorem Ipsum</a></h4>
-                <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-              <div class="icon-box">
-                <div class="icon"><i class="bx bx-file"></i></div>
-                <h4><a href="">Sed ut perspiciatis</a></h4>
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-              <div class="icon-box">
-                <div class="icon"><i class="bx bx-tachometer"></i></div>
-                <h4><a href="">Magni Dolores</a></h4>
-                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-              <div class="icon-box">
-                <div class="icon"><i class="bx bx-world"></i></div>
-                <h4><a href="">Nemo Enim</a></h4>
-                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-              <div class="icon-box">
-                <div class="icon"><i class="bx bx-slideshow"></i></div>
-                <h4><a href="">Dele cardo</a></h4>
-                <p>Quis consequatur saepe eligendi voluptatem consequatur dolor consequuntur</p>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-              <div class="icon-box">
-                <div class="icon"><i class="bx bx-arch"></i></div>
-                <h4><a href="">Divera don</a></h4>
-                <p>Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur</p>
-              </div>
-            </div>
-
-          </div>
-
+    <div class="row">
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+        <div class="icon-box">
+          <div class="icon"><i class="bx bx-slideshow"></i></div>
+          <h4><a href="#">Kearifan Lokal</a></h4>
+          <p>Nikmati tarian tradisional yang memukau, musik khas, dan festival budaya yang meriah.</p>
         </div>
-      </section> -->
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
+        <div class="icon-box">
+          <div class="icon"><i class="bx bx-file"></i></div>
+          <h4><a href="#">Produk Lokal</a></h4>
+          <p>Temukan kerajinan tangan eksotis, bunga krisan cantik, dan makanan khas yang memanjakan lidah.</p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
+        <div class="icon-box">
+          <div class="icon"><i class="bx bx-arch"></i></div>
+          <h4><a href="#">Wisata Pinus</a></h4>
+          <p>Rasakan keindahan alam dan ketenangan hutan pinus yang memikat.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
     <!-- End Services Section -->
 
     <!-- ======= Cta Section ======= -->
-      <!-- <section id="cta" class="cta">
-        <div class="container">
+    <section id="cta" class="cta">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9 text-center text-lg-start">
+        <h3>Hubungi Kami</h3>
+        <p> Temukan potensi luar biasa dan kekayaan Desa Gendro. Bergabunglah dengan kami dalam perjalanan unik untuk merasakan budaya lokal yang kaya, produk khas yang menggoda, dan keindahan alam yang menenangkan. Jadilah bagian dari pengalaman yang tak terlupakan.</p>
+      </div>
+      <div class="col-lg-3 cta-btn-container text-center">
+        <a class="cta-btn align-middle" href="#">Hubungi Lebih Lanjut</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-          <div class="row">
-            <div class="col-lg-9 text-center text-lg-start">
-              <h3>Call To Action</h3>
-              <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </div>
-            <div class="col-lg-3 cta-btn-container text-center">
-              <a class="cta-btn align-middle" href="#">Call To Action</a>
-            </div>
-          </div>
-
-        </div>
-      </section> -->
     <!-- End Cta Section -->
 
     <!-- ======= Features Section ======= -->
@@ -254,19 +226,19 @@
 
             <div class="col-lg-3 col-md-4 col-xs-6">
               <div class="client-logo">
-                <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
+                <img src="assets/img/clients/client-1.png" class="img-fluid" alt="kakkak">
               </div>
             </div>
 
             <div class="col-lg-3 col-md-4 col-xs-6">
               <div class="client-logo">
-                <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
+                <img src="assets/img/clients/client-2.png" class="img-fluid" alt="kakkka">
               </div>
             </div>
 
             <div class="col-lg-3 col-md-4 col-xs-6">
               <div class="client-logo">
-                <img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
+                <img src="assets/img/clients/client-3.png" class="img-fluid" alt="kakakka">
               </div>
             </div>
 
@@ -344,28 +316,28 @@
     <!-- End Counts Section -->
 
     <!-- ======= Portfolio Section ======= -->
-      <!-- <section id="portfolio" class="portfolio">
+      <section id="portfolio" class="portfolio">
         <div class="container">
 
           <div class="section-title">
-            <h2>Portfolio</h2>
-            <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+            <h2>Galeri Gendifo</h2>
+            <p>Terinspirasi oleh keanekaragaman budaya, produk khas, dan destinasi wisata, kami menyajikan pengalaman yang tak terlupakan. Temukan pesona lokal yang memukau melalui galeri kami.</p>
           </div>
 
           <div class="row">
             <div class="col-lg-12 d-flex justify-content-center">
               <ul id="portfolio-flters">
                 <li data-filter="*" class="filter-active">All</li>
-                <li data-filter=".filter-app">App</li>
-                <li data-filter=".filter-card">Card</li>
-                <li data-filter=".filter-web">Web</li>
+                <li data-filter=".filter-budaya">Budaya</li>
+                <li data-filter=".filter-produk">Produk</li>
+                <li data-filter=".filter-wisata">Wisata</li>
               </ul>
             </div>
           </div>
 
           <div class="row portfolio-container">
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-app">
               <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>App 1</h4>
@@ -373,9 +345,9 @@
                 <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
                 <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
               </div>
-            </div>
+            </div> -->
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-web">
               <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Web 3</h4>
@@ -383,9 +355,9 @@
                 <a href="assets/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
                 <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
               </div>
-            </div>
+            </div> -->
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-app">
               <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>App 2</h4>
@@ -393,9 +365,9 @@
                 <a href="assets/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
                 <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
               </div>
-            </div>
+            </div> -->
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-card">
               <img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Card 2</h4>
@@ -403,29 +375,29 @@
                 <a href="assets/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 2"><i class="bx bx-plus"></i></a>
                 <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
               </div>
-            </div>
+            </div> -->
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-              <img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
+            <div class="col-lg-4 col-md-6 portfolio-item filter-wisata">
+              <img src="../img/pinus.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
-                <h4>Web 2</h4>
-                <p>Web</p>
-                <a href="assets/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 2"><i class="bx bx-plus"></i></a>
+                <h4>Wisata</h4>
+                <p>Hutan Pinus Gendro</p>
+                <!-- <a href="assets/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 2"><i class="bx bx-plus"></i></a> -->
                 <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
               </div>
             </div>
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-              <img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
+            <div class="col-lg-4 col-md-6 portfolio-item filter-produk">
+              <img src="../img/bunga-krisan.jpg" class="img-fluid" alt="" style="max-height: fit-content !important;">
               <div class="portfolio-info">
-                <h4>App 3</h4>
-                <p>App</p>
-                <a href="assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
+                <h4>Produk</h4>
+                <p>Bunga Krisan</p>
+                <!-- <a href="assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 3"><i class="bx bx-plus"></i></a> -->
                 <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
               </div>
             </div>
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-card">
               <img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Card 1</h4>
@@ -433,9 +405,9 @@
                 <a href="assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 1"><i class="bx bx-plus"></i></a>
                 <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
               </div>
-            </div>
+            </div> -->
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-card">
               <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Card 3</h4>
@@ -443,9 +415,9 @@
                 <a href="assets/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 3"><i class="bx bx-plus"></i></a>
                 <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
               </div>
-            </div>
+            </div> -->
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-web">
               <img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Web 3</h4>
@@ -453,12 +425,12 @@
                 <a href="assets/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
                 <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
               </div>
-            </div>
+            </div> -->
 
           </div>
 
         </div>
-      </section> -->
+      </section>
     <!-- End Portfolio Section -->
 
     <!-- ======= Pricing Section ======= -->
@@ -661,7 +633,8 @@
       </section> -->
     <!-- End Contact Section -->
 
-  </main><!-- End #main -->
+    </main>
+  <!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
@@ -669,15 +642,14 @@
       <h3>Gendifo : Gendro Digital Platform</h3>
       <p></p>
       <div class="social-links">
-        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        <a href="https://www.tiktok.com/@desa.gendro?_t=8g3oR9i6hPN&_r=1" class="tiktok"><i class="bx bxl-tiktok"></i></a>
+        <a href="https://youtube.com/@desagendro?si=SMQtsets_6lgZ74y" class="youtube"><i class="bx bxl-youtube"></i></a>
+        <a href="https://instagram.com/desagendro?igshid=NzZlODBkYWE4Ng" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="mailto:gendrodesa@gmail.com" class="gmail"><i class="bx bxl-gmail"></i></a>
       </div>
-      <div class="copyright">
+      <!-- <div class="copyright">
         &copy; Copyright <strong><span>KnightOne</span></strong>. All Rights Reserved
-      </div>
+      </div> -->
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->
         <!-- You can delete the links only if you purchased the pro version. -->
@@ -698,9 +670,24 @@
   <script src="vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="vendor/swiper/swiper-bundle.min.js"></script>
   <script src="vendor/php-email-form/validate.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <!-- Template Main JS File -->
   <script src="js/visitor.js"></script>
+
+  <!-- Toast Error -->
+  @if (session('toast_error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: "{{ session('toast_error') }}",
+                showConfirmButton: false,
+                timer: 3000,
+                confirmButtonColor: '#005c97',
+            });
+        </script>
+    @endif
 
 </body>
 

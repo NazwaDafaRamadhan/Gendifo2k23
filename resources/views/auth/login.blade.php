@@ -1,4 +1,6 @@
 @section('title', 'Login')
+@include('sweetalert::alert')
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -146,54 +148,63 @@
     }
   </style>
 </head>
+
 <body>
   <div class="wrapper">
-    <form id="login-form">
+    <form id="login-form" method="POST" action="/login">
         @csrf
       <h2>Login</h2>
         <div class="input-field">
-        <input type="text" id="email" autocomplete="off" required>
+        <input type="email" id="email" autocomplete="off" name="email" required value="{{ old('email') }}">
         <label>Enter your email</label>
       </div>
       <div class="input-field">
-        <input type="password" id="password" autocomplete="off" required>
+        <input type="password" id="password" autocomplete="off" name="password" required>
         <label>Enter your password</label>
       </div>
-      <div class="forget">
+      <!-- <div class="forget">
         <label for="remember">
           <input type="checkbox" id="remember">
           <p>Remember me</p>
         </label>
         <a href="#">Forgot password?</a>
-      </div>
+      </div> -->
       <button type="submit">Log In</button>
-      <div class="register">
+      <!-- <div class="register">
         <p>Don't have an account? <a href="#">Register</a></p>
-      </div>
+      </div> -->
     </form>
   </div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-    const loginForm = document.getElementById("login-form");
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    loginForm.addEventListener("submit", function(event) {
-        event.preventDefault(); // Menghentikan pengiriman form secara default
+  <!-- Script sweetalert notification -->
+  @if (session('toast_error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: "{{ session('toast_error') }}",
+                showConfirmButton: false,
+                timer: 3000,
+                confirmButtonColor: '#005c97',
+            });
+        </script>
+    @endif
 
-        // Mendapatkan nilai email dan password dari input
-        const emailInput = document.getElementById("email").value;
-        const passwordInput = document.getElementById("password").value;
+    </script>
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: "{{ session('success') }}",
+                showConfirmButton: true,
+                timer: 3000,
+                confirmButtonColor: '#005c97',
+            });
+        </script>
+    @endif
 
-        // Cek apakah email dan password sesuai dengan yang diinginkan
-        if (emailInput === "gendifo@gmail.com" && passwordInput === "gendifogendromaju123") {
-        // Jika sesuai, arahkan pengguna ke halaman dashboard
-        window.location.href = "dashboard.html";
-        } else {
-        // Jika tidak sesuai, Anda dapat menampilkan pesan kesalahan atau mengambil tindakan lain sesuai kebutuhan Anda
-        alert("Email atau password salah. Silakan coba lagi.");
-        }
-    });
-    });
-  </script>
 </body>
 </html>

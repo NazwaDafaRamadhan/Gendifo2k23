@@ -16,8 +16,8 @@
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Tempat Wisata</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Narahubung</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Deskripsi Wisata</th>
-                      <th class="text-secondary opacity-7"></th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal Dibuat</th>
+                      <th class="text-secondary text-uppercase text-xxs font-weight-bolder opacity-7 ps-2">Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -26,7 +26,7 @@
                             <td>
                                 <div class="d-flex px-2 py-1">
                                     <div>
-                                        <img src="" class="avatar avatar-sm me-3" alt="">
+                                        <img src="{{ 'storage/'. $w->gambar }}" class="avatar avatar-sm me-3" alt="">
                                     </div>
                                     <div class="d-flex flex-column justify-content-center">
                                         <h6 style="white-space: normal;" class="mb-0 text-sm">{{ $w->wisata }}</h6>
@@ -35,8 +35,12 @@
                                 </div>
                             </td>
                             <td style="white-space: normal;"><h6 class="mb-0 text-sm">{{ $w->kontak }}</h6></td>
-                            <td style="white-space: normal;"><h6 class="mb-0 text-sm">{{ $w->deskripsi }}</h6></td>
-                            <td class="align-middle"><a href="#" class="text-secondary font-weight-bold text-xs btn-edit" data-bs-target="#modalEdit" data-bs-toggle="modal" data-wisata-id="{{ $w->id_wisata }}">Edit</a></td>
+                            <td style="white-space: normal;"><h6 class="mb-0 text-sm">{{ $w->created_at }}</h6></td>
+                            <td class="align-middle">
+                              <a href="#" class="text-secondary font-weight-bold text-xs btn-edit" data-bs-target="#modalEdit" data-bs-toggle="modal" data-wisata-id="{{ $w->id_wisata }}">Edit</a> ||
+                              <a href="#" class="text-secondary font-weight-bold text-xs btn-delete"
+                              onclick="return confirmDelete('{{ $w->id_wisata }}')">Hapus</a>
+                            </td>
                         </tr>
                         @endforeach
                   </tbody>
@@ -105,8 +109,18 @@
                         <input type="text" class="form-control" id="kontakWisata" name="kontak">
                     </div>
                     <div class="mb-3">
-                        <label for="notelepon" class="form-label">Deskripsi</label>
-                        <textarea type="text" class="form-control" id="deskripsiWisata" name="deskripsi"></textarea>
+                        <label for="notelp" class="form-label">No Telepon</label>
+                        <input type="text" class="form-control" id="notelpWisata" name="notelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="deskripsi" class="form-label">Deskripsi</label>
+                        <input id="deskripsi" type="hidden" name="deskripsi">
+                        <trix-editor input="deskripsi"></trix-editor>
+                    </div>
+                    <div class="mb-3">
+                        <label for="gambar" class="form-label">Gambar Wisata</label>
+                        <img class="img-preview img-fluid"></img>
+                        <input type="file" class="form-control" id="gambar" name="gambar" onchange="previewImage()">
                     </div>
                     <div class="modal-footer">
                         <div class="d-grid gap-2 col-6 mx-auto">
@@ -135,22 +149,37 @@
                         <h1 class="modal-title fs-5" id="editModalLabel">Edit Wisata</h1>
                     </div>
                     <div class="modal-body">
+                      @foreach ($wisata as $w)
                       <form method="POST" action="/edit-wisata/update/{{ request()->route('id') }}" id="editForm" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         {{ method_field('POST') }}
-                        <input type="text" name="id_wisata" id="id_wisata">
+                        <input type="hidden" name="id_wisata" id="id_wisata" value="{{ $w->id_wisata }}">
                         <div class="mb-3">
                             <label for="namaWisata" class="form-label">Nama Wisata</label>
-                            <input type="text" class="form-control" id="wisata" name="wisata">
+                            <input type="text" class="form-control" id="wisata" name="wisata" value="{{ $w->wisata }}">
                         </div>
                         <div class="mb-3">
                               <label for="kontak" class="form-label">Kontak Narahubung</label>
-                              <input type="text" class="form-control" id="kontak" name="kontak">
-                          </div>
-                          <div class="mb-3">
+                              <input type="text" class="form-control" id="kontak" name="kontak" value="{{ $w->kontak }}">
+                        </div>
+                        <div class="mb-3">
+                              <label for="notelp" class="form-label">No Telepon</label>
+                              <input type="text" class="form-control" id="notelp" name="notelp" value="{{ $w->notelp }}">
+                        </div>
+                        <div class="mb-3">
                               <label for="deskripsi" class="form-label">Deskripsi</label>
-                              <textarea type="text" class="form-control" id="deskripsi" name="deskripsi"></textarea>
-                          </div>
+                              <input id="deskripsi" value="{{ $w->deskripsi }}" type="hidden" name="deskripsi">
+                              <trix-editor input="deskripsi" id="deskripsi"></trix-editor>
+                        </div>
+                        <div class="mb-3">
+                        <label for="gambar" class="form-label">Gambar Tempat Wisata</label>
+                            @if ($w->gambar)
+                            <img class="img-preview img-fluid d-block" src="{{ asset('storage/'. $w->gambar) }}"></img></br>
+                            @else
+                            <img class="img-preview img-fluid" id="imgPreview"></img></br>
+                            @endif
+                            <input type="file" class="form-control" id="gambar" name="gambar" onchange="previewImage()"> 
+                        </div>
                         <div class="modal-footer">
                             <div class="d-grid gap-2 col-6 mx-auto">
                                 <div class="row">
@@ -164,6 +193,7 @@
                             </div>
                         </div>
                       </form>
+                      @endforeach
                     </div>
                   </div>
               </div>
@@ -174,20 +204,17 @@
 
 <script>
     $(document).ready(function () {
-    // Tangani klik tombol "Edit"
-    $('.btn-edit').click(function () {
+    
+      $('.btn-edit').click(function () {
         var wisataId = $(this).data('wisata-id');
 
-        // Menggunakan AJAX untuk mengambil data wisata dengan ID yang sesuai
+        // Menggunakan AJAX untuk mengambil data budaya dengan ID yang sesuai
         $.ajax({
-            url: '/wisata/' + wisataId + '/modal', // Ganti dengan URL yang sesuai
+            url: '/wisata-admin/' + wisataId + '/modal', // Ganti dengan URL yang sesuai
             type: 'GET',
             success: function (response) {
-                // Isi formulir modal dengan data yang diterima
-                $('#id_wisata').val(wisataId);
-                $('#wisata').val(response.wisata);
-                $('#kontak').val(response.kontak);
-                $('#deskripsi').val(response.deskripsi);
+                var deskripsiEditor = document.querySelector("trix-editor#deskripsi").editor;
+                deskripsiEditor.loadHTML(response.deskripsi);
             }
         });
     });
@@ -225,6 +252,52 @@
         });
     });
 });
+
+function previewImage() {
+  const image = document.querySelector('#gambar');
+  const imgPreview = document.querySelector('.img-preview');
+
+  if (image.files && image.files[0]) {
+    imgPreview.style.display = 'block';
+
+    const fileGambar = new FileReader();
+    fileGambar.readAsDataURL(image.files[0]);
+
+    fileGambar.onload = function (gambarEvent) {
+      imgPreview.src = gambarEvent.target.result;
+    }
+  } else {
+    // Menampilkan pesan kesalahan dengan SweetAlert
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Tidak ada file yang dipilih',
+    });
+
+    // Menampilkan pesan kesalahan di konsol
+    console.log(response);
+  }
+}
+
+
+    function confirmDelete(wisataId) {
+        Swal.fire({
+            title: 'Konfirmasi',
+            text: 'Anda yakin ingin menghapus data ini?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, Hapus',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Jika pengguna mengonfirmasi, jalankan aksi penghapusan
+                window.location = '/wisata-admin/delete/' + wisataId;
+            }
+        });
+        return false; // Mencegah tautan mengarahkan langsung ke URL
+    }
+
+
 
 </script>
 

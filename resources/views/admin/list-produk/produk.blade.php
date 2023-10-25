@@ -15,8 +15,8 @@
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Produk</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Kontak</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Deskripsi Produk</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Narahubung</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tanggal Dibuat</th>
                       <th class="text-secondary text-uppercase text-xxs font-weight-bolder opacity-7 ps-2">Action</th>
                     </tr>
                   </thead>
@@ -26,7 +26,7 @@
                             <td>
                                 <div class="d-flex px-2 py-1">
                                     <div>
-                                        <img src="" class="avatar avatar-sm me-3" alt="">
+                                        <img src="{{ 'storage/'. $p->gambar }}" class="avatar avatar-me me-3" alt="">
                                     </div>
                                     <div class="d-flex flex-column justify-content-center">
                                         <h6 style="white-space: normal;" class="mb-0 text-sm">{{ $p->produk }}</h6>
@@ -35,8 +35,12 @@
                                 </div>
                             </td>
                             <td style="white-space: normal;"><h6 class="mb-0 text-sm">{{ $p->kontak }}</h6></td>
-                            <td style="white-space: normal;"><h6 class="mb-0 text-sm">{{ $p->deskripsi }}</h6></td>
-                            <td class="align-middle"><a href="#" class="text-secondary font-weight-bold text-xs btn-edit" data-bs-toggle="modal" data-bs-target="#modalEdit" data-produk-id="{{ $p->id_produk }}">Edit</a></td>
+                            <td style="white-space: normal;"><h6 class="mb-0 text-sm">{{ $p->created_at }}</h6></td>
+                            <td class="align-middle">
+                              <a href="#" class="text-secondary font-weight-bold text-xs btn-edit" data-bs-toggle="modal" data-bs-target="#modalEdit" data-produk-id="{{ $p->id_produk }}">Edit</a> ||
+                              <a href="#" class="text-secondary font-weight-bold text-xs btn-delete"
+                              onclick="return confirmDelete('{{ $p->id_produk }}')">Hapus</a>
+                            </td>
                         </tr>
                         @endforeach
                   </tbody>
@@ -91,13 +95,13 @@
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambahkan Mitra</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambahkan Produk Lokal Desa</h1>
                 </div>
                 <div class="modal-body">
                     <form method="POST" action="/add-produk/store" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="mb-3">
-                        <label for="mitra" class="form-label">Nama Produk</label>
+                        <label for="produk" class="form-label">Nama Produk</label>
                         <input type="text" class="form-control" id="namaProduk" name="produk">
                     </div>
                     <div class="mb-3">
@@ -105,10 +109,20 @@
                         <input type="text" class="form-control" id="kontakProduk" name="kontak">
                     </div>
                     <div class="mb-3">
-                        <label for="notelepon" class="form-label">Deskripsi</label>
-                        <textarea type="text" class="form-control" id="deskripsiProduk" name="deskripsi"></textarea>
+                        <label for="notelp" class="form-label">No Telepon</label>
+                        <input type="text" class="form-control" id="notelpProduk" name="notelp">
                     </div>
-                    <div class="modal-footer">
+                    <div class="mb-3">
+                        <label for="deskripsi" class="form-label">Deskripsi</label>
+                        <input id="deskripsi" type="hidden" name="deskripsi">
+                        <trix-editor input="deskripsi"></trix-editor>
+                    </div>
+                    <div class="mb-3">
+                        <label for="gambar" class="form-label">Gambar Produk</label>
+                        <img class="img-preview img-fluid"></img>
+                        <input type="file" class="form-control" id="gambar" name="gambar" onchange="previewImage()">
+                    </div>
+                      <div class="modal-footer">
                         <div class="d-grid gap-2 col-6 mx-auto">
                             <div class="row">
                                 <div class="col-6">
@@ -132,25 +146,40 @@
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
                   <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="editModalLabel">Edit Produk</h1>
+                      <h1 class="modal-title fs-5" id="editModalLabel">Edit Produk Lokal Desa</h1>
                   </div>
                   <div class="modal-body">
+                    @foreach ($produk as $p)
                     <form method="POST" action="/edit-produk/update/{{ request()->route('id') }}" id="editForm" enctype="multipart/form-data">
                       {{ csrf_field() }}
                       {{ method_field('POST') }}
                       <input type="hidden" name="id_produk" id="id_produk">
                       <div class="mb-3">
                           <label for="namaProduk" class="form-label">Nama Produk</label>
-                          <input type="text" class="form-control" id="produk" name="produk">
+                          <input type="text" class="form-control" id="produk" name="produk" value="{{ $p->produk }}">
                       </div>
                       <div class="mb-3">
                             <label for="kontak" class="form-label">Kontak Narahubung</label>
-                            <input type="text" class="form-control" id="kontak" name="kontak">
+                            <input type="text" class="form-control" id="kontak" name="kontak" value="{{ $p->kontak }}">
                         </div>
-                        <div class="mb-3">
-                            <label for="deskripsi" class="form-label">Deskripsi</label>
-                            <textarea type="text" class="form-control" id="deskripsi" name="deskripsi"></textarea>
-                        </div>
+                      <div class="mb-3">
+                        <label for="notelp" class="form-label">No Telepon</label>
+                        <input type="text" class="form-control" id="notelp" name="notelp" value="{{ $p->notelp }}">
+                      </div>
+                      <div class="mb-3">
+                        <label for="deskripsi" class="form-label">Deskripsi</label>
+                        <input id="deskripsi" value="{{ $p->deskripsi }}" type="hidden" name="deskripsi">
+                        <trix-editor input="deskripsi" id="deskripsi"></trix-editor>
+                      </div>
+                      <div class="mb-3">
+                      <label for="gambar" class="form-label">Gambar Produk</label>
+                            @if ($p->gambar)
+                            <img class="img-preview img-fluid d-block" src="{{ asset('storage/'. $p->gambar) }}"></img></br>
+                            @else
+                            <img class="img-preview img-fluid" id="imgPreview"></img></br>
+                            @endif
+                            <input type="file" class="form-control" id="gambar" name="gambar" onchange="previewImage()"> 
+                      </div>
                       <div class="modal-footer">
                           <div class="d-grid gap-2 col-6 mx-auto">
                               <div class="row">
@@ -164,6 +193,7 @@
                           </div>
                       </div>
                     </form>
+                    @endforeach
                   </div>
                 </div>
             </div>
@@ -174,20 +204,48 @@
 
 <script>
     $(document).ready(function () {
-    // Tangani klik tombol "Edit"
-    $('.btn-edit').click(function () {
+      $('#modalTambah form').submit(function(event) {
+            event.preventDefault(); // Mencegah pengiriman formulir secara otomatis
+
+            var produk = $('#produk').val();
+            var deskripsi = $('#deskripsi').val(); 
+            var kontak = $('#kontakProduk').val();
+            var notelp = $('#notelpProduk').val();
+            var gambarInput = $('#gambar');
+
+            // Validasi gambar
+            var gambarValid = true;
+            if (gambarInput[0].files.length === 0) {
+                gambarValid = false;
+                alert('Masukkan gambar produk terlebih dahulu.');
+            } else {
+                var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+                if (!allowedExtensions.exec(gambarInput.val())) {
+                    gambarValid = false;
+                    alert('File gambar harus dalam format JPG, JPEG, PNG, atau GIF.');
+                }
+            }
+
+            if (!produk || !deskripsi || !kontak || !notelp || !gambarValid) {
+                // Tampilkan pesan kesalahan jika ada
+                alert('Harap perhatikan untuk mengisi semua data.');
+            } else {
+                // Formulir valid, kirimkan formulir secara manual
+                $(this).unbind('submit').submit();
+            }
+        });
+
+
+      $('.btn-edit').click(function () {
         var produkId = $(this).data('produk-id');
 
-        // Menggunakan AJAX untuk mengambil data produk dengan ID yang sesuai
+        // Menggunakan AJAX untuk mengambil data budaya dengan ID yang sesuai
         $.ajax({
-            url: '/produk/' + produkId + '/modal', // Ganti dengan URL yang sesuai
+            url: '/produk-admin/' + produkId + '/modal', // Ganti dengan URL yang sesuai
             type: 'GET',
             success: function (response) {
-                // Isi formulir modal dengan data yang diterima
-                $('#id_produk').val(produkId);
-                $('#produk').val(response.produk);
-                $('#kontak').val(response.kontak);
-                $('#deskripsi').val(response.deskripsi);
+                var deskripsiEditor = document.querySelector("trix-editor#deskripsi").editor;
+                deskripsiEditor.loadHTML(response.deskripsi);
             }
         });
     });
@@ -225,6 +283,42 @@
         });
     });
 });
+
+
+    function confirmDelete(produkId) {
+        Swal.fire({
+            title: 'Konfirmasi',
+            text: 'Anda yakin ingin menghapus data ini?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, Hapus',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Jika pengguna mengonfirmasi, jalankan aksi penghapusan
+                window.location = '/produk-admin/delete/' + produkId;
+            }
+        });
+        return false; // Mencegah tautan mengarahkan langsung ke URL
+    }
+
+
+
+
+function previewImage () {
+  
+  const image = document.querySelector ('#gambar');
+  const imgPreview = document.querySelector('.img-preview');
+  
+  imgPreview.style.display = 'block';
+
+  const fileGambar= new FileReader ();
+  fileGambar.readAsDataURL(image.files[0]);
+
+  fileGambar.onload = function (gambarEvent) {
+    imgPreview.src = gambarEvent.target.result;
+  }
+}
 
 </script>
 

@@ -9,8 +9,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="img/favicon.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="../img/logo-gendifo-besar.png" rel="icon">
+  <link href="../img/logo-gendifo-besar.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -34,7 +34,8 @@
 
         <div class="row justify-content-center">
             <div class="col-xl-9 d-flex align-items-center justify-content-lg-between">
-            <h1 class="logo me-auto me-lg-0"><a href="{{ url('home') }}">Gendifo</a></h1>
+                <a href="{{ url('home') }}" class="logo me-auto me-lg-0"><img alt="logo-putih" src="../img/logo-putih.png"></img></a>
+            <!-- <h1 class="logo me-auto me-lg-0"><a href="{{ url('home') }}">Gendifo</a></h1> -->
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -44,7 +45,7 @@
                     <li><a class="nav-link active" href="{{ url('home') }}">Beranda</a></li>
                     <li><a class="nav-link" href="{{ url('about') }}">Tentang Desa</a></li>
                     <li><a class="nav-link" href="{{ url('wisata') }}">Destinasi Pariwisata</a></li>
-                    <li><a class="nav-link " href="{{ url('galeri') }}">Galeri Kebudayaan</a></li>
+                    <li><a class="nav-link " href="{{ url('budaya') }}">Galeri Kebudayaan</a></li>
                     <li><a class="nav-link " href="{{ url('produk') }}">Produk Lokal</a></li>
                     <!-- <li class="dropdown"><a href="{{ url('produk') }}"><span>Produk Lokal</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
@@ -97,11 +98,9 @@
             <h3>Gendifo : Gendro Digital Platforms</h3>
             <p></p>
             <div class="social-links">
-                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="tiktok"><i class="bx bxl-tiktok"></i></a>
+                <a href="#" class="youtube"><i class="bx bxl-youtube"></i></a>
                 <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
             </div>
             <!-- <div class="copyright">
                 &copy; Copyright <strong><span>KnightOne</span></strong>. All Rights Reserved
@@ -111,7 +110,7 @@
                 <!-- You can delete the links only if you purchased the pro version. -->
                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                 <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/knight-simple-one-page-bootstrap-template/ -->
-                Developed With Love by <a href="https://www.instagram.com/p2md_himafortic/">P2MD Himafortic Unesa</a>
+                Designed by <a href="https://www.instagram.com/p2md_himafortic/">P2MD Himafortic Unesa</a>
             </div>
             </div>
         </footer>
@@ -124,9 +123,38 @@
     <script src="vendor/isotope-layout/isotope.pkgd.min.js"></script>
     <script src="vendor/swiper/swiper-bundle.min.js"></script>
     <script src="vendor/php-email-form/validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Template Main JS File -->
     <script src="js/visitor.js"></script>
+
+    <!-- Toast Error -->
+    @if (session('toast_error'))
+            <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: "{{ session('toast_error') }}",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    confirmButtonColor: '#005c97',
+                });
+            </script>
+    @endif
+    <!-- Toast Success -->
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: "{{ session('success') }}",
+                showConfirmButton: true,
+                timer: 3000,
+                confirmButtonColor: '#005c97',
+            });
+        </script>
+    @endif
+
 
 </body>
 </html>
