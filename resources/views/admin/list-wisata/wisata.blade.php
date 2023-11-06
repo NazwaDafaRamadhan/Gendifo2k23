@@ -15,7 +15,7 @@
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Tempat Wisata</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Narahubung</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Dibuat Oleh</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal Dibuat</th>
                       <th class="text-secondary text-uppercase text-xxs font-weight-bolder opacity-7 ps-2">Action</th>
                     </tr>
@@ -34,7 +34,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td style="white-space: normal;"><h6 class="mb-0 text-sm">{{ $w->kontak }}</h6></td>
+                            <td style="white-space: normal;"><h6 class="mb-0 text-sm">{{ $w->created_by }}</h6></td>
                             <td style="white-space: normal;"><h6 class="mb-0 text-sm">{{ $w->created_at }}</h6></td>
                             <td class="align-middle">
                               <a href="#" class="text-secondary font-weight-bold text-xs btn-edit" data-bs-target="#modalEdit" data-bs-toggle="modal" data-wisata-id="{{ $w->id_wisata }}">Edit</a> ||
@@ -113,6 +113,10 @@
                         <input type="text" class="form-control" id="notelpWisata" name="notelp">
                     </div>
                     <div class="mb-3">
+                        <label for="alamat" class="form-label">Lokasi Wisata</label>
+                        <input type="text" class="form-control" id="alamatWisata" name="alamat">
+                    </div>
+                    <div class="mb-3">
                         <label for="deskripsi" class="form-label">Deskripsi</label>
                         <input id="deskripsi" type="hidden" name="deskripsi">
                         <trix-editor input="deskripsi"></trix-editor>
@@ -122,6 +126,19 @@
                         <img class="img-preview img-fluid"></img>
                         <input type="file" class="form-control" id="gambar" name="gambar" onchange="previewImage()">
                     </div>
+                    <div class="mb-3">
+                        <label for="link_post_ig" class="form-label">Link Postingan Instagram</label>
+                        <input type="text" class="form-control" id="link_post_ig" name="link_post_ig">
+                    </div>
+                    <div class="mb-3">
+                        <label for="link_post_tiktok" class="form-label">Link Postingan Tiktok</label>
+                        <input type="text" class="form-control" id="link_post_tiktok" name="link_post_tiktok">
+                    </div>
+                    <div class="mb-3">
+                        <label for="link_post_yt" class="form-label">Link Postingan Video Youtube</label>
+                        <input type="text" class="form-control" id="link_post_yt" name="link_post_yt">
+                    </div>
+                    <input type="hidden" name="created_by" id="created_by" value="{{ Auth::user()->nama }}">
                     <div class="modal-footer">
                         <div class="d-grid gap-2 col-6 mx-auto">
                             <div class="row">
@@ -149,42 +166,59 @@
                         <h1 class="modal-title fs-5" id="editModalLabel">Edit Wisata</h1>
                     </div>
                     <div class="modal-body">
-                      @foreach ($wisata as $w)
-                      <form method="POST" action="/edit-wisata/update/{{ request()->route('id') }}" id="editForm" enctype="multipart/form-data">
+                      <form method="POST" action="/edit-wisata/update/{{ $w->id_wisata }}" id="editForm" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         {{ method_field('POST') }}
                         <input type="hidden" name="id_wisata" id="id_wisata" value="{{ $w->id_wisata }}">
                         <div class="mb-3">
-                            <label for="namaWisata" class="form-label">Nama Wisata</label>
-                            <input type="text" class="form-control" id="wisata" name="wisata" value="{{ $w->wisata }}">
+                            <label for="namaWisata" class="form-label">Nama Wisata</label><a class="text-danger">*</a>
+                            <input type="text" class="form-control" id="wisata" name="wisata">
                         </div>
                         <div class="mb-3">
-                              <label for="kontak" class="form-label">Kontak Narahubung</label>
-                              <input type="text" class="form-control" id="kontak" name="kontak" value="{{ $w->kontak }}">
+                              <label for="kontak" class="form-label">Kontak Narahubung</label><a class="text-danger">*</a>
+                              <input type="text" class="form-control" id="kontak" name="kontak">
                         </div>
                         <div class="mb-3">
-                              <label for="notelp" class="form-label">No Telepon</label>
-                              <input type="text" class="form-control" id="notelp" name="notelp" value="{{ $w->notelp }}">
+                              <label for="notelp" class="form-label">No Telepon</label><a class="text-danger">*</a>
+                              <input type="text" class="form-control" id="notelp" name="notelp">
                         </div>
                         <div class="mb-3">
-                              <label for="deskripsi" class="form-label">Deskripsi</label>
-                              <input id="deskripsi" value="{{ $w->deskripsi }}" type="hidden" name="deskripsi">
-                              <trix-editor input="deskripsi" id="deskripsi"></trix-editor>
+                              <label for="alamat" class="form-label">Lokasi Wisata</label><a class="text-danger">*</a>
+                              <input type="text" class="form-control" id="alamat" name="alamat">
                         </div>
                         <div class="mb-3">
-                        <label for="gambar" class="form-label">Gambar Tempat Wisata</label>
+                            <label for="deskripsi" class="form-label">Deskripsi</label><a class="text-danger">*</a>
+                            <input id="deskripsiEdit" type="hidden" name="deskripsi">
+                            <trix-editor input="deskripsiEdit" id="deskripsi"></trix-editor>
+                        </div>
+                        <div class="mb-3">
+                        <label for="gambar" class="form-label">Gambar Wisata</label><a class="text-danger">*</a>
+                        <input type="hidden" name="gambarLama" >
                             @if ($w->gambar)
-                            <img class="img-preview img-fluid d-block" src="{{ asset('storage/'. $w->gambar) }}"></img></br>
+                            <img class="img-preview img-fluid d-block" id="img-preview" src="{{ asset('storage/'. $w->gambar) }}"></img></br>
                             @else
-                            <img class="img-preview img-fluid" id="imgPreview"></img></br>
+                            <img class="img-preview img-fluid" id="img-preview"></img></br>
                             @endif
-                            <input type="file" class="form-control" id="gambar" name="gambar" onchange="previewImage()"> 
+                            <input type="file" class="form-control" id="gambarEdit" name="gambar" onchange="editImage()"> 
                         </div>
+                        <div class="mb-3">
+                              <label for="link_post_ig" class="form-label">Link Postingan Instagram</label>
+                              <input type="text" class="form-control" id="link_post_ig_edit" name="link_post_ig">
+                          </div>
+                          <div class="mb-3">
+                              <label for="link_post_tiktok" class="form-label">Link Postingan Tiktok</label>
+                              <input type="text" class="form-control" id="link_post_tiktok_edit" name="link_post_tiktok">
+                          </div>
+                          <div class="mb-3">
+                              <label for="link_post_yt" class="form-label">Link Postingan Video Youtube</label>
+                              <input type="text" class="form-control" id="link_post_yt_edit" name="link_post_yt">
+                          </div>
+
                         <div class="modal-footer">
                             <div class="d-grid gap-2 col-6 mx-auto">
                                 <div class="row">
                                     <div class="col-6">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btnCloseModal">Tutup</button>
                                     </div>
                                     <div class="col-6">
                                         <button type="submit" class="btn btn-primary" type="button">Simpan</button>
@@ -193,7 +227,6 @@
                             </div>
                         </div>
                       </form>
-                      @endforeach
                     </div>
                   </div>
               </div>
@@ -204,7 +237,38 @@
 
 <script>
     $(document).ready(function () {
-    
+      $('#modalTambah form').submit(function(event) {
+            event.preventDefault(); // Mencegah pengiriman formulir secara otomatis
+
+            var wisata = $('#namaWisata').val();
+            var deskripsi = $('#deskripsi').val(); 
+            var kontak = $('#kontakWisata').val();
+            var notelp = $('#notelpWisata').val();
+            var alamat = $('#alamatWisata').val();
+            var gambarInput = $('#gambar');
+
+            // Validasi gambar
+            var gambarValid = true;
+            if (gambarInput[0].files.length === 0) {
+                gambarValid = false;
+                alert('Pilih gambar wisata terlebih dahulu.');
+            } else {
+                var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+                if (!allowedExtensions.exec(gambarInput.val())) {
+                    gambarValid = false;
+                    alert('File gambar harus dalam format JPG, JPEG, PNG, atau GIF.');
+                }
+            }
+
+            if (!wisata || !deskripsi || !kontak || !notelp || !gambarValid || !alamat) {
+                // Tampilkan pesan kesalahan jika ada
+                alert('Harap perhatikan untuk mengisi semua data.');
+            } else {
+                // Formulir valid, kirimkan formulir secara manual
+                $(this).unbind('submit').submit();
+            }
+        });
+
       $('.btn-edit').click(function () {
         var wisataId = $(this).data('wisata-id');
 
@@ -213,43 +277,44 @@
             url: '/wisata-admin/' + wisataId + '/modal', // Ganti dengan URL yang sesuai
             type: 'GET',
             success: function (response) {
+              $('#id_wisata').val(response.id_wisata);
+              $('#wisata').val(response.wisata);
+              $('#kontak').val(response.kontak);
+              $('#notelp').val(response.notelp);
+              $('#alamat').val(response.alamat);
+              $('#link_post_ig_edit').val(response.link_post_ig);
+              $('#link_post_tiktok_edit').val(response.link_post_tiktok);
+              $('#link_post_yt_edit').val(response.link_post_yt);
+
                 var deskripsiEditor = document.querySelector("trix-editor#deskripsi").editor;
                 deskripsiEditor.loadHTML(response.deskripsi);
+
+                if (response.gambar) {
+                  $('#img-preview').attr('src', '/storage/' + response.gambar);
+                } else {
+                  $('#img-preview').attr('src', '');
+                }
             }
         });
-    });
 
-    // Tangani klik tombol "Simpan" pada modal update
-    $('#editForm').submit(function (event) {
-        event.preventDefault(); // Mencegah pengiriman form biasa
-        var formData = $(this).serialize();
-
-        $.ajax({
-            url: '/edit-wisata/update/{id}', // Ganti dengan URL yang sesuai
-            type: 'POST',
-            data: formData,
-            success: function (response) {
-                // Tambahkan logika atau respons sesuai kebutuhan
-                if (response.success) {
-                      Swal.fire({
-                      title: 'Pemberitahuan!',
-                      text: response.message,
-                      icon: 'success',
-                      showConfirmButton: false,
-                      timer: 1500 // Waktu tampilan pesan (opsional)
-                  }).then(() => {
-                      // Tutup modal
-                      $('#modalEdit').modal('hide');
-
-                      // Reload halaman
-                      location.reload();
-                  });
-                } else {
-                    // Jika pembaruan gagal, tampilkan pesan kesalahan
-                    console.error(response.message);
-                }
-            },
-        });
+        $('#btnCloseModal').click(function() {
+          $('#id_wisata').val('');
+          $('#wisata').val('');
+          $('#kontak').val('');
+          $('#notelp').val('');
+          $('#alamat').val('');
+          $('#gambarEdit').val('');
+          $('#link_post_ig').val(''); 
+          $('#link_post_tiktok').val(''); 
+          $('#link_post_yt').val('');
+          
+          var deskripsiEditor = document.querySelector("trix-editor#deskripsi").editor;
+          deskripsiEditor.setContent('');
+          
+          $('#img-preview').attr('src','');
+          
+          $('#modalEdit').modal('hide');
+      });
     });
 });
 
@@ -276,6 +341,33 @@ function previewImage() {
 
     // Menampilkan pesan kesalahan di konsol
     console.log(response);
+  }
+}
+
+function editImage() {
+  const image = document.querySelector('#gambarEdit');
+  const imgPreview = document.querySelector('#img-preview');
+
+  if (image.files && image.files[0]) {
+    const fileGambar = new FileReader();
+
+    fileGambar.onload = function (gambarEvent) {
+      imgPreview.src = gambarEvent.target.result;
+      imgPreview.classList.remove('d-none'); // Menampilkan gambar pratinjau
+    };
+
+    fileGambar.readAsDataURL(image.files[0]);
+  } else {
+    // Menampilkan pesan kesalahan dengan SweetAlert
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Tidak ada file yang dipilih',
+    });
+
+    // Menghilangkan gambar pratinjau
+    imgPreview.src = '';
+    imgPreview.classList.add('d-none');
   }
 }
 

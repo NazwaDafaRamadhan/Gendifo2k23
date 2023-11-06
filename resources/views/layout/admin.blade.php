@@ -66,18 +66,9 @@
   <div class="min-height-300 bg-layout-atas position-absolute w-100"></div>
   @include('layout.sidebar-admin')
   <main class="main-content position-relative border-radius-lg ">
-      @include('layout.navbar-admin')
-      @yield('content')
+    @include('layout.navbar-admin')
+    @yield('content')
   </main>
-    <script>
-      var win = navigator.platform.indexOf('Win') > -1;
-      if (win && document.querySelector('#sidenav-scrollbar')) {
-        var options = {
-          damping: '0.5'
-        }
-        Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-      }
-  </script>
   <!-- Script sweetalert notification -->
   @if (session('toast_error'))
         <script>
@@ -106,8 +97,24 @@
         </script>
     @endif
 
-    <!-- Github buttons -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script>
+      function confirmLogout() {
+          Swal.fire({
+              title: 'Konfirmasi Logout',
+              text: 'Apakah Anda yakin ingin logout?',
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonText: 'Ya, Logout',
+              cancelButtonText: 'Batal'
+          }).then((result) => {
+              if (result.isConfirmed) {
+                  // Jika pengguna mengonfirmasi logout, submit form logout
+                  document.getElementById('logout-form').submit();
+              }
+          });
+        }
+      </script>
+
     <!--   Core JS Files   -->
     <script src="js/core/popper.min.js"></script>
     <!--   Core JS Files   -->
@@ -116,6 +123,20 @@
     <script src="js/plugins/perfect-scrollbar.min.js"></script>
     <script src="js/plugins/smooth-scrollbar.min.js"></script>
     <script src="js/plugins/chartjs.min.js"></script>
+
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <script>
+      var win = navigator.platform.indexOf('Win') > -1;
+      if (win && document.querySelector('#sidenav-scrollbar')) {
+        var options = {
+          damping: '0.5'
+        }
+        Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+      }
+    </script>
+
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="js/admin.js"></script>
     

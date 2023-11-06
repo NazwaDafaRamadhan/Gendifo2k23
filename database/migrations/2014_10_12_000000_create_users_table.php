@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('nama');
             $table->string('password');
             $table->string('email')->unique();
+            $table->string('status');
+            $table->string('user_role');
+            $table->timestamp('approved_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

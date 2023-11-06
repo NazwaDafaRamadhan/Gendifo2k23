@@ -19,6 +19,12 @@ return new class extends Migration
             $table->text('singkat')->nullable();
             $table->string('notelp')->nullable();
             $table->string('gambar')->nullable();
+            $table->string('video')->nullable();
+            $table->string('link_post_ig')->nullable();
+            $table->string('link_post_tiktok')->nullable();
+            $table->string('link_post_yt')->nullable();
+            $table->string('created_by')->nullable();
+            $table->string('alamat')->nullable();
             $table->timestamps();
         });
     }

@@ -9,22 +9,22 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="../img/logo-gendifo-besar.png" rel="icon">
-  <link href="../img/logo-gendifo-besar.png" rel="apple-touch-icon">
+  <link href="{{ asset('img/logo-gendifo-besar.png') }}" rel="icon">
+  <link href="{{ asset('img/logo-gendifo-besar.png') }}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-  <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" type="text/css">
-  <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet" type="text/css">
-  <link href="vendor/glightbox/css/glightbox.min.css" rel="stylesheet" type="text/css">
-  <link href="vendor/remixicon/remixicon.css" rel="stylesheet" type="text/css">
-  <link href="vendor/swiper/swiper-bundle.min.css" rel="stylesheet" type="text/css">
+  <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ asset('vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ asset('vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ asset('vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ asset('vendor/remixicon/remixicon.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ asset('vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet" type="text.css">
 
   <!-- Template Main CSS File -->
-  <link rel="stylesheet" type="text/css" href="css/style-visitor.css">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/style-visitor.css') }}">
 
 </head>
 <body>
@@ -44,7 +44,7 @@
                     <ul>
                     <li><a class="nav-link active" href="{{ url('home') }}">Beranda</a></li>
                     <li><a class="nav-link" href="{{ url('about') }}">Tentang Desa</a></li>
-                    <li><a class="nav-link" href="{{ url('wisata') }}">Destinasi Pariwisata</a></li>
+                    <li><a class="nav-link" href="{{ url('wisata') }}">Destinasi Wisata</a></li>
                     <li><a class="nav-link " href="{{ url('budaya') }}">Galeri Kebudayaan</a></li>
                     <li><a class="nav-link " href="{{ url('produk') }}">Produk Lokal</a></li>
                     <!-- <li class="dropdown"><a href="{{ url('produk') }}"><span>Produk Lokal</span> <i class="bi bi-chevron-down"></i></a>
@@ -95,12 +95,13 @@
     <!-- ======= Footer ======= -->
         <footer id="footer">
             <div class="container">
-            <h3>Gendifo : Gendro Digital Platforms</h3>
+            <h3>Gendifo : Gendro's Digital Platforms</h3>
             <p></p>
             <div class="social-links">
-                <a href="#" class="tiktok"><i class="bx bxl-tiktok"></i></a>
-                <a href="#" class="youtube"><i class="bx bxl-youtube"></i></a>
-                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+            <a href="https://www.tiktok.com/@desa.gendro?_t=8g3oR9i6hPN&_r=1" class="tiktok"><i class="bx bxl-tiktok"></i></a>
+            <a href="https://youtube.com/@desagendro?si=SMQtsets_6lgZ74y" class="youtube"><i class="bx bxl-youtube"></i></a>
+            <a href="https://instagram.com/desagendro?igshid=NzZlODBkYWE4Ng" class="instagram"><i class="bx bxl-instagram"></i></a>
+            <a href="mailto:gendrodesa@gmail.com" class="gmail"><i class="bx bxl-gmail"></i></a>
             </div>
             <!-- <div class="copyright">
                 &copy; Copyright <strong><span>KnightOne</span></strong>. All Rights Reserved
@@ -117,16 +118,17 @@
     <!-- End Footer -->
 
     <!-- Vendor JS Files -->
-    <script src="vendor/purecounter/purecounter_vanilla.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="vendor/php-email-form/validate.js"></script>
+    <script src="{{ asset('vendor/purecounter/purecounter_vanilla.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ asset('vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('vendor/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('vendor/php-email-form/validate.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Template Main JS File -->
-    <script src="js/visitor.js"></script>
+    <script src="{{ asset('js/visitor.js') }}"></script>
+
 
     <!-- Toast Error -->
     @if (session('toast_error'))

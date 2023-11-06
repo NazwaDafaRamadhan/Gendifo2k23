@@ -85,7 +85,7 @@
       <div class="row justify-content-center">
         <div class="col-xl-8">
           <h1>SELAMAT DATANG DI DESA GENDRO</h1>
-          <h2>Gendifo : Gendro Digital Platform</h2>
+          <h2>Gendifo : Gendro's Digital Platform</h2>
           <a href="../video/profil-gendifo.mp4" class="glightbox play-btn mb-4"></a>
         </div>
       </div>
@@ -101,7 +101,7 @@
 
           <div class="section-title">
             <h2>Tentang Desa</h2>
-            <p>Desa Gendro, sebuah desa di Kecamatan Tutur, Pasuruan, Jawa Timur, memikat dengan lima dusun uniknya dan beragam mata pencaharian, termasuk pertanian buah dan sayur, peternakan sapi perah, serta budidaya bunga krisan yang menawan. Disamping pesona alamnya, desa ini juga menjaga warisan budaya dan tradisinya. Dengan kedamaian pedesaan dan keramahan penduduknya, Gendro adalah tempat yang sempurna untuk melarikan diri dari kehidupan perkotaan dan mengeksplorasi keindahan alam serta budaya lokal. Selamat datang di Desa Gendro, tempat Anda akan menemukan pengalaman tak terlupakan di Jawa Timur, Indonesia.</p>
+            <p style="text-align: justify;">Desa Gendro, sebuah desa di Kecamatan Tutur, Pasuruan, Jawa Timur, memikat dengan lima dusun uniknya dan beragam mata pencaharian, termasuk pertanian buah dan sayur, peternakan sapi perah, serta budidaya bunga krisan yang menawan. Disamping pesona alamnya, desa ini juga menjaga warisan budaya dan tradisinya. Dengan kedamaian pedesaan dan keramahan penduduknya, Gendro adalah tempat yang sempurna untuk melarikan diri dari kehidupan perkotaan dan mengeksplorasi keindahan alam serta budaya lokal. Selamat datang di Desa Gendro, tempat Anda akan menemukan pengalaman tak terlupakan di Jawa Timur, Indonesia.</p>
           </div>
 
           <div class="row content">
@@ -117,10 +117,10 @@
               </ul>
             </div>
             <div class="col-lg-6 pt-4 pt-lg-0">
-              <p>
+              <p style="text-align: justify;">
                 Temukan pesona alam dan kekayaan tradisi lokal yang menantang Anda untuk menjelajah lebih dalam, mengungkap rahasia dan kenikmatan yang tersembunyi di sini.
               </p>
-              <a href="#" class="btn-learn-more">Lihat Selengkapnya</a>
+              <a href="/about" class="btn-learn-more">Lihat Selengkapnya</a>
             </div>
           </div>
 
@@ -141,7 +141,7 @@
       <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
         <div class="icon-box">
           <div class="icon"><i class="bx bx-slideshow"></i></div>
-          <h4><a href="#">Kearifan Lokal</a></h4>
+          <h4><a href="/budaya">Kebudayaan Lokal</a></h4>
           <p>Nikmati tarian tradisional yang memukau, musik khas, dan festival budaya yang meriah.</p>
         </div>
       </div>
@@ -149,7 +149,7 @@
       <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
         <div class="icon-box">
           <div class="icon"><i class="bx bx-file"></i></div>
-          <h4><a href="#">Produk Lokal</a></h4>
+          <h4><a href="/produk">Produk Lokal</a></h4>
           <p>Temukan kerajinan tangan eksotis, bunga krisan cantik, dan makanan khas yang memanjakan lidah.</p>
         </div>
       </div>
@@ -157,7 +157,7 @@
       <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
         <div class="icon-box">
           <div class="icon"><i class="bx bx-arch"></i></div>
-          <h4><a href="#">Wisata Pinus</a></h4>
+          <h4><a href="/wisata">Destinasi Wisata</a></h4>
           <p>Rasakan keindahan alam dan ketenangan hutan pinus yang memikat.</p>
         </div>
       </div>
@@ -176,7 +176,7 @@
         <p> Temukan potensi luar biasa dan kekayaan Desa Gendro. Bergabunglah dengan kami dalam perjalanan unik untuk merasakan budaya lokal yang kaya, produk khas yang menggoda, dan keindahan alam yang menenangkan. Jadilah bagian dari pengalaman yang tak terlupakan.</p>
       </div>
       <div class="col-lg-3 cta-btn-container text-center">
-        <a class="cta-btn align-middle" href="#">Hubungi Lebih Lanjut</a>
+        <a class="cta-btn align-middle" href="https://www.instagram.com/direct/t/17843552136077905/">Hubungi Lebih Lanjut</a>
       </div>
     </div>
   </div>
@@ -217,66 +217,6 @@
         </div>
       </section> -->
     <!-- End Features Section -->
-
-    <!-- ======= Clients Section ======= -->
-      <!-- <section id="clients" class="clients">
-        <div class="container">
-
-          <div class="row no-gutters clients-wrap clearfix wow fadeInUp">
-
-            <div class="col-lg-3 col-md-4 col-xs-6">
-              <div class="client-logo">
-                <img src="assets/img/clients/client-1.png" class="img-fluid" alt="kakkak">
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-xs-6">
-              <div class="client-logo">
-                <img src="assets/img/clients/client-2.png" class="img-fluid" alt="kakkka">
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-xs-6">
-              <div class="client-logo">
-                <img src="assets/img/clients/client-3.png" class="img-fluid" alt="kakakka">
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-xs-6">
-              <div class="client-logo">
-                <img src="assets/img/clients/client-4.png" class="img-fluid" alt="">
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-xs-6">
-              <div class="client-logo">
-                <img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-xs-6">
-              <div class="client-logo">
-                <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-xs-6">
-              <div class="client-logo">
-                <img src="assets/img/clients/client-7.png" class="img-fluid" alt="">
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-xs-6">
-              <div class="client-logo">
-                <img src="assets/img/clients/client-8.png" class="img-fluid" alt="">
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-      </section> -->
-    <!-- End Clients Section -->
 
     <!-- ======= Counts Section ======= -->
       <!-- <section id="counts" class="counts">
@@ -559,79 +499,62 @@
     <!-- End Faq Section -->
 
     <!-- ======= Contact Section ======= -->
-      <!-- <section id="contact" class="contact">
+      <section id="contact" class="contact">
         <div class="container">
 
           <div class="section-title">
-            <h2>Contact</h2>
-            <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+            <h2>Kunjungi Desa Gendro</h2>
+            <p style="text-align: justify;">"Ayo, mari kita berkunjung ke Desa Gendro dan nikmati pesonanya yang memikat! Temukan keindahan alam, budaya lokal yang kaya, dan sambutan hangat dari penduduknya. Suasana damai dan kebersamaan menanti kita di sini. Jangan lewatkan kesempatan untuk menciptakan kenangan indah di Desa Gendro!"</p>
           </div>
         </div>
 
-        <div>
-          <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe>
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <iframe style="border:0; width: 90%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.037885837115!2d112.80565527384611!3d-7.891105378499008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd62df53ad78173%3A0x66e7bea56baafe48!2sDesa%20Gendro%20Kec%20Tutur%20Kab.Pasuruan!5e0!3m2!1sen!2sid!4v1699215540707!5m2!1sen!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-
-        <div class="container">
-
-          <div class="row mt-5">
-
-            <div class="col-lg-4">
-              <div class="info">
-                <div class="address">
-                  <i class="ri-map-pin-line"></i>
-                  <h4>Location:</h4>
-                  <p>A108 Adam Street, New York, NY 535022</p>
-                </div>
-
-                <div class="email">
-                  <i class="ri-mail-line"></i>
-                  <h4>Email:</h4>
-                  <p>info@example.com</p>
-                </div>
-
-                <div class="phone">
-                  <i class="ri-phone-line"></i>
-                  <h4>Call:</h4>
-                  <p>+1 5589 55488 55s</p>
-                </div>
-
-              </div>
-
-            </div>
-
-            <div class="col-lg-8 mt-5 mt-lg-0">
-
-              <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                <div class="row">
-                  <div class="col-md-6 form-group">
-                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                  </div>
-                  <div class="col-md-6 form-group mt-3 mt-md-0">
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                  </div>
-                </div>
-                <div class="form-group mt-3">
-                  <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-                </div>
-                <div class="form-group mt-3">
-                  <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-                </div>
-                <div class="my-3">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-                </div>
-                <div class="text-center"><button type="submit">Send Message</button></div>
-              </form>
-
-            </div>
-
-          </div>
-
-        </div>
-      </section> -->
+      </section>
     <!-- End Contact Section -->
+
+        <!-- ======= Clients Section ======= -->
+        <section id="clients" class="clients">
+        <div class="container">
+          <div class="section-title">
+            <h2 style=" margin-bottom: 20px;"><b>GENDIFO PARTNERSHIP WITH</b></h2>
+          </div>
+
+          <div class="row no-gutters clients-wrap clearfix wow fadeInUp">
+
+          <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="client-logo">
+              <a href="https://api.whatsapp.com/send?phone=6281334579931">
+                <img src="../img/logo_sanggar.jpg" class="" alt="">
+                <div class="hover-text">Sanggar Bu Hariyati</div>
+              </a>
+            </div>
+          </div>
+
+            <div class="col-lg-3 col-md-4 col-xs-6">
+              <div class="client-logo">
+                <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-xs-6">
+              <div class="client-logo">
+                <img src="assets/img/clients/client-7.png" class="img-fluid" alt="">
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-xs-6">
+              <div class="client-logo">
+                <img src="assets/img/clients/client-8.png" class="img-fluid" alt="">
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+    <!-- End Clients Section -->
 
     </main>
   <!-- End #main -->
@@ -639,7 +562,7 @@
   <!-- ======= Footer ======= -->
   <footer id="footer">
     <div class="container">
-      <h3>Gendifo : Gendro Digital Platform</h3>
+      <h3>Gendifo : Gendro's Digital Platform</h3>
       <p></p>
       <div class="social-links">
         <a href="https://www.tiktok.com/@desa.gendro?_t=8g3oR9i6hPN&_r=1" class="tiktok"><i class="bx bxl-tiktok"></i></a>
@@ -662,6 +585,30 @@
 
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <style>
+    .client-logo {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hover-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        display: none;
+      }
+
+      .client-logo:hover .hover-text {
+        display: block;
+      }
+
+  </style>
 
   <!-- Vendor JS Files -->
   <script src="vendor/purecounter/purecounter_vanilla.js"></script>

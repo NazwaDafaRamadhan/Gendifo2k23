@@ -17,8 +17,14 @@ class checkAuth
     public function handle($request, Closure $next)
     {
         if (Auth::check()) {
-            return $next($request);
+            $user = Auth::user();
+            if ($user->status === 'Non-Active') {
+                return redirect()->route('not-confirmed');
+            }
+        } else {
+            return redirect()->back()->with('toast_error', 'Anda tidak dapat mengakses halaman ini.');
         }
-        return redirect()->back()->with('toast_error', 'Anda tidak dapat mengakses halaman ini.');
+
+        return $next($request);
     }
 }

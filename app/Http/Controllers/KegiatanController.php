@@ -22,12 +22,13 @@ class KegiatanController extends Controller
             'kontak' => $request->kontak,
             'notelp' => $request->notelp,
             'tgl_kegiatan'=> $request->tgl_kegiatan,
+            'created_at' => now(),
         ]);
-        return redirect('/kegiatan')->with('success','Berhasil menambahkan kegiatan');
+        return redirect('/kegiatan-admin')->with('success','Berhasil menambahkan kegiatan');
     }
 
     public function delete ($id) {
         DB::table('kegiatan')->where('id_kegiatan', $id)->delete();
-        return redirect('/kegiatan')->with('success', 'Berhasil hapus Kegiatan.');
+        return redirect('/kegiatan-admin')->with('success', 'Berhasil hapus Kegiatan.');
     }
 }

@@ -5,65 +5,63 @@
 
 <div class="hero">
     <div class="content text-center">
-            <h1>GALERI WISATA GENDIFO</h1>
+            <h1 style="margin-top: 20px; font-weight:  bold;">DESTINASI WISATA GENDIFO</h1>
     </div>
 </div>
 
-@foreach ($wisata as $w)
-    <div class="row justify-content-center content">
-        <div class="col-lg-4 wisata-card justify-content-center">
-            <img src="/storage/{{$w->gambar}}" alt="{{ $w->wisata }}">
+<div class="container-blog">
+    @foreach ($wisata as $w)
+    <div class="blog-card">
+        <div class="blog-image">
+          <img src="/storage/{{$w->gambar}}" alt="{{$w->wisata}}">
         </div>
-        <div class="col-lg-6 wisata-card">
-            <h3>{{ $w->wisata }}</h3>
-            <p>{{ $w->singkat }}</p>
-            <p>Untuk informasi lebih lanjut, hubungi berikut : {{ $w->kontak }} ({{ $w->notelp }})</p>
-            <a href="#" class="btn-learn-more">Lihat Selengkapnya</a>
+        <div class="blog-content">
+            <div class="published">
+                <p id="date" class="date">{{ $w->created_at }}</p></br>
+            </div>
+            <h3 class="title">{{ $w->wisata }}</h3>
+            <p class="description">{{ $w->singkat }}</p>
+            <p class="author">Ditulis oleh : {{ $w->created_by }}</p>
+            <div class="info">
+                <a href="{{ route('wisata.view', ['id' => $w->id_wisata]) }}" class="read-more">Read More</a>
+            </div>
         </div>
     </div>
-@endforeach
+    @endforeach
+</div>  
 
-<style>
-        .content {
-            background-color: #f5f5f5; /* Warna latar belakang */
-            padding: 40px;
-            text-align: center;
-        }
+<script>
+    // Mendapatkan semua elemen dengan class "date"
+    const dateElements = document.querySelectorAll('.date');
 
-        h1 {
-            font-size: 36px; /* Ukuran font judul */
-            margin-top: 20px;
-            color: #333; /* Warna teks */
-        }
+    dateElements.forEach(dateElement => {
+        // Mengambil tanggal dan waktu dari elemen
+        const dateTimeString = dateElement.textContent;
+        const dateTime = new Date(dateTimeString);
 
-        .wisata-card {
-            background-color: #fff; /* Warna latar belakang kartu budaya */
-            border: 1px solid #ddd; /* Garis tepi kartu budaya */
-            padding: 20px;
-            margin: 20px 0;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Efek bayangan kartu budaya */
-            transition: background-color 0.3s; /* Transisi efek perubahan warna */
-        }
+        // Daftar hari dalam bahasa Indonesia
+        const days = [
+            "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"
+        ];
 
-        .wisata-card:hover {
-            background-color: #f0f0f0; /* Warna latar belakang saat dihover */
-        }
+        // Daftar bulan dalam bahasa Indonesia
+        const months = [
+            "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+            "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+        ];
 
-        .wisata-card img {
-            width: 100px; /* Lebar gambar */
-            height: auto; /* Menyesuaikan tinggi gambar */
-            margin-left: 20px; /* Jarak dari kiri */
-        }
+        // Mendapatkan informasi tanggal, bulan, tahun, dan hari
+        const day = days[dateTime.getDay()];
+        const date = dateTime.getDate();
+        const month = months[dateTime.getMonth()];
+        const year = dateTime.getFullYear();
 
-        .wisata-card h3 {
-            font-size: 24px; /* Ukuran font judul budaya */
-            color: #333; /* Warna teks judul budaya */
-        }
+        // Membuat format yang diinginkan
+        const formattedDate = `${day}, ${date} ${month} ${year}`;
 
-        .wisata-card p {
-            font-size: 16px; /* Ukuran font deskripsi dan informasi kontak */
-            margin-top: 20px; /* Jarak atas */
-        }
-</style>
+        // Menetapkan hasil format sebagai isi dari elemen
+        dateElement.textContent = formattedDate;
+    });
+</script>
 
 @endsection

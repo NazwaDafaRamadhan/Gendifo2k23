@@ -1,5 +1,14 @@
+:root {
+  --primary: 223, 100%, 50%;
+  --bg: hsl(0, 0%, 100%);
+  --text: hsl(223, 90%, 8%);
+  --text-light: hsl(223, 24%, 36%);
+  --button-bg: hsl(223, 100%, 50%);
+  --button-hover-bg: hsl(223, 100%, 40%);
+}
+
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #444444;
 }
 
@@ -22,9 +31,8 @@ h6 {
   font-family: "Raleway", sans-serif;
 }
 
-/*--------------------------------------------------------------
-# Preloader
---------------------------------------------------------------*/
+/* CSS Preloader */
+
 #preloader {
   position: fixed;
   top: 0;
@@ -60,9 +68,8 @@ h6 {
   }
 }
 
-/*--------------------------------------------------------------
-# Back to top button
---------------------------------------------------------------*/
+/* CSS Back to the top botton */
+
 .back-to-top {
   position: fixed;
   visibility: hidden;
@@ -93,9 +100,8 @@ h6 {
   opacity: 1;
 }
 
-/*--------------------------------------------------------------
-# Header
---------------------------------------------------------------*/
+/* CSS Header */
+
 #header {
   transition: all 0.5s;
   z-index: 997;
@@ -131,7 +137,7 @@ h6 {
   }
 }
 
-/* Get Startet Button */
+/* CSS Get started button */
 .get-started-btn {
   margin-left: 25px;
   background: #009961;
@@ -159,9 +165,9 @@ h6 {
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
-/**
-* Desktop Navigation 
-*/
+
+/* CSS Navigation */
+
 .navbar {
   padding: 0;
 }
@@ -299,9 +305,8 @@ h6 {
   }
 }
 
-/**
-* Mobile Navigation 
-*/
+/* CSS Mobile Navigation */
+
 .mobile-nav-toggle {
   color: #fff;
   font-size: 28px;
@@ -825,7 +830,7 @@ section {
   border-bottom: 1px solid #e7e7e7;
   overflow: hidden;
   background: #fff;
-  height: 140px;
+  height: 200px;
 }
 
 .clients .client-logo:hover img {
@@ -1532,4 +1537,263 @@ section {
 
 #footer .credits a:hover {
   color: #009961;
+}
+
+/* CSS Blog Card */
+
+.container-blog {
+  background-color: var(--bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid var(--bg);
+  border-radius: 20px;
+  padding: 36px;
+  overflow: auto;
+}
+
+.blog-card {
+  flex: 0 0 calc(50% - 20px); /* 50% width with some spacing */
+  margin: 10px;
+  max-width: 780px;
+  min-height: 260px;
+  background-color: var(--bg);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.blog-card:hover {
+  transform: scale(1.05);
+}
+
+.blog-image {
+  flex: 1 0 240px;
+  min-height: 100%;
+  max-height: 350px;
+  overflow: hidden;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.blog-image img:hover {
+  transform: scale(1.1);
+}
+
+.date {
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+.blog-content {
+  flex: 3 1 400px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.published {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.published > svg {
+  stroke: var(--text-light);
+}
+.published > p {
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+.title {
+  font-size: 24px;
+  margin-top: 10px;
+  font-weight: 800;
+}
+
+.description {
+  color: var(--text-light);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.info {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  padding-top: 20px;
+}
+
+.info > .tags {
+  display: flex;
+  gap: 12px;
+}
+
+.tags > .tag {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 4px 8px;
+  color: hsl(223, 50%, 24%);
+  background-color: hsl(var(--primary) / 0.1);
+  border-radius: 1000px;
+}
+
+.info button {
+  flex: 1 0 240px;
+  max-width: 100%;
+  padding: 14px 32px;
+  background-color: var(--button-bg);
+  border-radius: 10px;
+  color: var(--bg);
+  font: inherit;
+  font-weight: 500;
+  border: 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.info button:hover {
+  background-color: var(--button-hover-bg);
+}
+
+.read-more {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #00C27B;
+  color: #fff; 
+  border: 2px solid #00C27B; 
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.read-more:hover {
+  background-color: #fff; 
+  color: #00C27B; 
+}
+
+.author {
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+@media (max-width: 768px) {
+  .container-blog {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .blog-card {
+    flex: 0 0 100%;
+  }
+}
+
+/* CSS Card Product */
+
+.container-product {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 100px 50px;
+  padding: 100px 50px;
+}
+
+.container-product .card-product {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 350px;
+  height: 300px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 35px 80px rgba(0, 0, 0, 0.15);
+  transition: 0.5s;
+}
+
+.container-product .card-product:hover {
+  height: 400px;
+}
+
+.container-product .card-product .imgBx {
+  position: absolute;
+  top: 20px;
+  width: 300px;
+  overflow: hidden;
+  height: 220px;
+  background: #333;
+  border-radius: 12px;
+  transition: 0.5s;
+}
+
+.container-product .card-product:hover .imgBx {
+  top: -80px;
+  scale: 0.75;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15);
+}
+
+.container-product .card-product .imgBx img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.container-product .card-product .content-product {
+  position: absolute;
+  width: 100%;
+  padding: 0 30px;
+  text-align: center;
+  top: 250px;
+  height: 40px;
+  overflow: hidden;
+  transition: 0.5s;
+}
+
+.container-product .card-product:hover .content-product {
+  top: 150px;
+  height: 250px;
+}
+
+.container-product .card-product .content-product h2 {
+  font-size: 1.5em;
+  font-weight: 700;
+}
+
+.container-product .card-product .content-product p {
+  text-align: justify;
+  color: #333;
+  font-size: 0.75em;
+}
+
+.container-product .card-product .content-product a {
+  position: relative;
+  display: inline-block;
+  padding: 12px 25px;
+  background: #00C27B;
+  color: #fff;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 8px;
 }

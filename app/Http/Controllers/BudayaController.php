@@ -20,15 +20,16 @@ class BudayaController extends Controller
         return view('visitor.budaya.index', compact('budaya'));
     }
 
-    public function artikel($id_budaya) {
-        $budaya = DB::table('budaya')->find($id_budaya);
-    
-        return view('visitor.budaya.view')
-            ->with('budaya', $budaya)
-            ->with('title', 'Budaya Artikel'); // Optional, jika ingin mengatur judul halaman
+    public function artikel($id) {
+        $budaya = DB::table('budaya')->where('id_budaya', $id)->first();
+        $pageTitle = 'Kebudayaan';
+        
+        return view('visitor.budaya.view', compact('budaya', 'pageTitle'));
     }    
 
     public function input(Request $request) {
+        // dd($request->all());
+        
         // Validasi data yang diunggah oleh pengguna
         $validasiData = $request->validate([
             'gambar' => 'required|file|image|mimes:jpeg,png,jpg|max:1024',
@@ -36,16 +37,23 @@ class BudayaController extends Controller
             'deskripsi' => 'required',
             'kontak' => 'required',
             'notelp' => 'required',
+            'video' => 'mimes:mp4,avi,mov|max:5120000', // 5 GB
         ]);
 
-        $validasiData['singkat'] = Str::limit(strip_tags($request->deskripsi),150);
+        $validasiData['singkat'] = Str::limit(strip_tags($request->deskripsi),200);
     
         // Simpan file yang diunggah ke direktori "gambar-gendro"
         if ($request->hasFile('gambar')) {
-            $path = $request->file('gambar')->store('gambar-gendro');
+            $pathGambar = $request->file('gambar')->store('gambar-gendro');
         } else {
-            $path = ''; // Atur default jika tidak ada file diunggah
+            $pathGambar = ''; // Atur default jika tidak ada file diunggah
         }
+
+        if ($request->hasFile('video')) {
+            $pathVideo = $request->file('video')->store('video-gendro');
+        } else {
+            $pathVideo = ''; // Atur default jika tidak ada file diunggah
+        }        
     
         // Simpan data ke database menggunakan DB::table
         DB::table('budaya')->insert([
@@ -54,9 +62,13 @@ class BudayaController extends Controller
             'singkat' => $validasiData['singkat'],
             'kontak' => $validasiData['kontak'],
             'notelp' => $validasiData['notelp'],
-            'gambar' => $path,
+            'gambar' => $pathGambar,
+            'video' => $pathVideo,
+            'link_post_ig' => $request->input('link_post_ig'),
+            'link_post_tiktok' => $request->input('link_post_tiktok'),
+            'link_post_yt' => $request->input('link_post_yt'),
+            'created_by' => $request->input('created_by'),
             'created_at' => now(),
-            'updated_at' => now(),
         ]);
     
         return redirect('/budaya-admin')->with('success', 'Berhasil menambahkan data produk');
@@ -70,14 +82,20 @@ class BudayaController extends Controller
     }
     
     public function update(Request $request) {
-        // return $request;
-        
+        // dd(request()->all());
+                
         // Ambil data dari form
         $namaBudaya = $request->input('budaya');
         $kontakBudaya = $request->input('kontak');
         $deskripsiBudaya = $request->input('deskripsi');
         $noTelepon = $request->input('notelp');
-        // $gambarBudaya = $request->input('gambar');
+        $linkIg = $request->input('link_post_ig');
+        $linkTiktok = $request->input('link_post_tiktok');
+        $linkYt = $request->input('link_post_yt');
+
+        $singkatBudaya = Str::limit(strip_tags($request->input('deskripsi')), 200);
+
+        $oldVideoPath = DB::table('budaya')->where('id_budaya', $request->input('id_budaya'))->value('video');
 
         $oldImagePath = DB::table('budaya')->where('id_budaya', $request->input('id_budaya'))->value('gambar');
         
@@ -89,10 +107,23 @@ class BudayaController extends Controller
             }
         
             // Simpan gambar baru
-            $path = $request->file('gambar')->store('gambar-gendro');
+            $pathGambar = $request->file('gambar')->store('gambar-gendro');
         } else {
-            $path = $oldImagePath;
-        }        
+            $pathGambar = $oldImagePath;
+        }
+        
+        // Ambil video yang diunggah 
+        if ($request->hasFile('video')) {
+            // Hapus video lama jika ada
+            if ($oldVideoPath) {
+                Storage::delete($oldVideoPath);
+            }
+        
+            // Simpan video baru
+            $pathVideo = $request->file('video')->store('video-gendro');
+            } else {
+                $pathVideo = $oldVideoPath;
+            }
 
         // Update data produk dalam database
         DB::table('budaya')
@@ -102,8 +133,13 @@ class BudayaController extends Controller
                 'kontak' => $kontakBudaya,
                 'deskripsi' => $deskripsiBudaya,
                 'notelp'=> $noTelepon,
-                'gambar'=> $path,
+                'link_post_ig' => $linkIg,
+                'link_post_tiktok' => $linkTiktok,
+                'link_post_yt' => $linkYt,
+                'gambar'=> $pathGambar,
+                'video'=> $pathVideo,
                 'updated_at' => now(),
+                'singkat' => $singkatBudaya,
             ]);
     
         // Redirect atau kirim respons sesuai kebutuhan Anda
@@ -112,7 +148,25 @@ class BudayaController extends Controller
 
     public function delete($id)
     {
-        DB::table('budaya')->where('id_budaya', $id)->delete();
-        return redirect('/budaya-admin')->with('success', 'Berhasil hapus kebudayaan.');
+        $budaya = DB::table('budaya')->where('id_budaya', $id)->first();
+    
+        if ($budaya) {
+            // Hapus video dan gambar terkait
+            if (!empty($budaya->video)) {
+                Storage::delete($budaya->video);
+            }
+    
+            if (!empty($budaya->gambar)) {
+                Storage::delete($budaya->gambar);
+            }
+    
+            // Hapus entri budaya dari database
+            DB::table('budaya')->where('id_budaya', $id)->delete();
+            
+            return redirect('/budaya-admin')->with('success', 'Berhasil hapus kebudayaan.');
+        } else {
+            return redirect('/budaya-admin')->with('error', 'Kebudayaan tidak ditemukan.');
+        }
     }
+    
 }

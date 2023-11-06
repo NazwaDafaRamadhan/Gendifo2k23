@@ -1,4 +1,4 @@
-@section('title', 'Login')
+@section('title', 'Register')
 @include('sweetalert::alert')
 
 <!DOCTYPE html>
@@ -146,78 +146,38 @@
     margin-top: 30px;
     color: #fff;
     }
-
-    .custom-checkbox-label {
-      display: inline-block;
-      position: relative;
-      padding-left: 0;
-      cursor: pointer;
-    }
-
-    .custom-checkbox {
-      display: none;
-    }
-
-    .custom-checkbox-indicator {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 30px;
-      height: 30px;
-      background-color: #fff;
-      border: 2px solid #333;
-      border-radius: 5px;
-    }
-
-    span.custom-checkbox-indicator {
-      color: #fff !important; /* Mengubah warna teks span menjadi putih */
-    }
-
-    .custom-checkbox:checked + .custom-checkbox-indicator::after {
-      content: "\2713";
-      position: absolute;
-      top: 5px;
-      left: 7px;
-      font-size: 18px;
-      color: #333;
-    }
-
-    .custom-checkbox-label:hover .custom-checkbox-indicator {
-      background-color: #f0f0f0;
-      border-color: #666;
-    }
-
-    button[type="submit"] {
-      margin-top: 10px; /* Atur margin di atas tombol Log In sesuai kebutuhan Anda */
-    }
-
-
   </style>
 </head>
 
 <body>
   <div class="wrapper">
-    <form id="login-form" method="POST" action="/login">
-        @csrf
-      <h2>Login</h2>
-        <div class="input-field">
-        <input type="email" id="email" autocomplete="off" name="email" required value="{{ old('email') }}">
-        <label>Masukkan Email</label>
-      </div>
-      <div class="input-field">
-        <input type="password" id="password" autocomplete="off" name="password" required>
-        <label>Masukkan Password</label>
-      </div>
-      <div class="forget">
+    <form id="register-form" method="POST" action="/register">
+    @csrf
+    <h2>Register</h2>
+    <div class="input-field">
+      <input type="text" id="username" autocomplete="off" name="nama" required value="{{ old('nama') }}">
+      <label>Masukkan Nama Pengguna</label>
+    </div>
+    <div class="input-field">
+      <input type="email" id="email" autocomplete="off" name="email" required value="{{ old('email') }}">
+      <label>Masukkan Email</label>
+    </div>
+    <div class="input-field">
+      <input type="password" id="password" autocomplete="off" name="password" required>
+      <label>Masukkan Password</label>
+    </div>
+    <div class="forget">
         <label for="show">
           <input type="checkbox" id="check">
           <p>Show Password</p>
         </label>
       </div>
-      <button type="submit">Log In</button>
-      <div class="register">
-        <p>Don't have an account? <a href="/register">Register</a></p>
-      </div>
+    <input type="hidden" name="status" value="Non-Active">
+    <input type="hidden" name="user_role" value="Admin">
+    <button type="submit">Register</button>
+    <div class="register">
+      <p>Already have an account? <a href="/login">Log In</a></p>
+    </div>
     </form>
   </div>
 
